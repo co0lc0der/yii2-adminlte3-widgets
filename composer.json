@@ -1,0 +1,24 @@
+{
+    "name": "co0lc0der/yii2-adminlte3-widgets",
+    "description": "AdminLTE 3 widgets for Yii2",
+    "type": "yii2-extension",
+    "keywords": ["yii2","extension","widgets","adminLTE","adminLTE3"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "co0LC0Der",
+            "email": "c0der@ya.ru"
+        }
+    ],
+    "require": {
+        "php": ">=7.4",
+        "yiisoft/yii2": "~2.0.14",
+        "hail812/yii2-adminlte3": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "co0lc0der\\Lte3Widgets\\": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}
