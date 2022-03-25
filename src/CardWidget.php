@@ -4,23 +4,99 @@ namespace co0lc0der\Lte3Widgets;
 use yii\bootstrap\Html;
 use yii\web\View;
 
+/**
+ * Class CardWidget
+ * @package co0lc0der\Lte3Widgets
+ */
 class CardWidget extends \yii\base\Widget
 {
-	public string $title;                 // title of a card
-	public string $color = '';            // color of a card header (Bootstrap 4 colors. 'success', 'danger' еtс.)
-	public bool $outline = false;         // makes an outlined card
-	public bool $background = false;      // makes a colored card, uses $color property (Bootstrap 4 colors)
-	public bool $gradient = false;        // makes a gradient card, uses $color property (Bootstrap 4 colors)
-	public string $footer = '';           // content of card footer
-	public bool $collapse = true;         // show/hide collapse button inside card header
-	public bool $hide = false;            // show/hide a collapsed card after initialization
-	public bool $expand = false;          // show/hide maximize button inside card header
-	public bool $close = false;           // show/hide close button inside card header
-	public string $ajaxLoad = '';         // show loading spinner
-	public string $ajaxOverlay = 'overlay';// type of loading overlay ('overlay', 'dark')
-	public string $shadow = '';           // type of loading overlay ('shadow-none', 'shadow-sm', 'shadow', 'shadow-lg')
-	public array $items = [];             // list of header custom items (labels, buttons, links)
+	/**
+	 * title of a card
+	 * @var string
+	 */
+	public string $title;
 
+	/**
+	 * color of a card header (Bootstrap 4 colors. 'success', 'danger' еtс.)
+	 * @var string
+	 */
+	public string $color = '';
+
+	/**
+	 * makes an outlined card
+	 * @var bool
+	 */
+	public bool $outline = false;
+
+	/**
+	 * makes a colored card, uses $color property (Bootstrap 4 colors)
+	 * @var bool
+	 */
+	public bool $background = false;
+
+	/**
+	 * makes a gradient card, uses $color property (Bootstrap 4 colors)
+	 * @var bool
+	 */
+	public bool $gradient = false;
+
+	/**
+	 * content of card footer
+	 * @var string
+	 */
+	public string $footer = '';
+
+	/**
+	 * show / hide collapse button inside card header
+	 * @var bool
+	 */
+	public bool $collapse = true;
+
+	/**
+	 * show / hide a collapsed card after initialization
+	 * @var bool
+	 */
+	public bool $hide = false;
+
+	/**
+	 * show / hide collapse button inside card header
+	 * @var bool
+	 */
+	public bool $expand = false;
+	/**
+	 * show / hide maximize button inside card header
+	 * @var bool
+	 */
+	public bool $close = false;
+
+	/**
+	 * URL for loading data, if it is not empty it shows a spinner before data loaded
+	 * @var string
+	 */
+	public string $ajaxLoad = '';
+
+	/**
+	 * type of loading overlay ('overlay', 'dark')
+	 * @var string
+	 */
+	public string $ajaxOverlay = 'overlay';
+
+	/**
+	 * type of loading overlay
+	 * ('shadow-none', 'shadow-sm', 'shadow', 'shadow-lg')
+	 * @var string
+	 */
+	public string $shadow = '';
+
+	/**
+	 * list of header custom tools (labels, buttons, links)
+	 * @var array
+	 */
+	public array $tools = [];
+
+	/**
+	 * @return void
+	 */
 	public function init()
 	{
 		parent::init();
@@ -60,9 +136,13 @@ class CardWidget extends \yii\base\Widget
 				]
 			];
 		}
+
 		ob_start();
 	}
 
+	/**
+	 * @return string
+	 */
 	public function run(): string
 	{
 		$this->registerJs();
@@ -70,12 +150,12 @@ class CardWidget extends \yii\base\Widget
 		$html = Html::beginTag('div', ['class' => $this->getCardClass()]);
 
 		$html .= Html::beginTag('div', ['class' => $this->getCardHeaderClass()]);
-		$html .= (!empty($this->title)) ? Html::tag('h3', $this->title, ['class' => 'card-title']) : '';
-		$html .= Html::tag('div', $this->getCardTools(), ['class' => 'card-tools']);
+		$html .= $this->getCardTitle();
+		$html .= $this->getCardTools();
 		$html .= Html::endTag('div'); // the end of a card header
 
-		$html .= Html::tag('div', $content, ['class' => 'card-body']);
-		$html .= ($this->footer) ? Html::tag('div', $this->footer, ['class' => 'card-footer']) : '';
+		$html .= $this->getCardBody($content);
+		$html .= $this->getCardFooter();
 
 		if ($this->ajaxLoad) {
 			$overlay = ($this->ajaxOverlay == 'dark') ? 'overlay dark' : 'overlay';
@@ -87,6 +167,34 @@ class CardWidget extends \yii\base\Widget
 		return $html;
 	}
 
+	/**
+	 * @return string
+	 */
+	private function getCardTitle(): string
+	{
+		return (!empty($this->title)) ? Html::tag('h3', $this->title, ['class' => 'card-title']) : '';
+	}
+
+	/**
+	 * @param string $content
+	 * @return string
+	 */
+	private function getCardBody(string $content = ''): string
+	{
+		return (!empty($content)) ? Html::tag('div', $content, ['class' => 'card-body']) : '';
+	}
+
+	/**
+	 * @return string
+	 */
+	private function getCardFooter(): string
+	{
+		return (!empty($this->footer)) ? Html::tag('div', $this->footer, ['class' => 'card-footer']) : '';
+	}
+
+	/**
+	 * @return string
+	 */
 	private function getCardClass(): string
 	{
 		$class = "card";
@@ -101,6 +209,9 @@ class CardWidget extends \yii\base\Widget
 		return $class;
 	}
 
+	/**
+	 * @return string
+	 */
 	private function getCardHeaderClass(): string
 	{
 		$class = 'card-header';
@@ -108,12 +219,15 @@ class CardWidget extends \yii\base\Widget
 		return $class;
 	}
 
+	/**
+	 * @return string
+	 */
 	private function getCardTools(): string
 	{
 		$html = '';
 
-		if (is_array($this->items)){
-			foreach ($this->items as $item){
+		if (is_array($this->tools)) {
+			foreach ($this->tools as $item) {
 				if ($item[0] == 'button') {
 					$html .= Html::button($item[1], array_merge(['class' => 'btn btn-tool'], $item[2]));
 				} else if ($item[0] == 'label') {
@@ -124,21 +238,23 @@ class CardWidget extends \yii\base\Widget
 			}
 		}
 
-		return $html;
+		return (!empty($html)) ? Html::tag('div', $html, ['class' => 'card-tools']) : '';
 	}
 
+	/**
+	 * @return void
+	 */
 	private function registerJs(): void
 	{
 		if ($this->ajaxLoad) {
 			$this->view->registerJs("
-           $.each($('[data-ajax-load-url]'), function(i, el) {
-              let url = $(el).attr('data-ajax-load-url');
-              $(el).siblings('.card-body').load(url, function() {
-                $(el).remove();
-              });
-           });
+          $.each($('[data-ajax-load-url]'), function(i, el) {
+						let url = $(el).attr('data-ajax-load-url');
+						$(el).siblings('.card-body').load(url, function() {
+							$(el).remove();
+						});
+          });
         ", View::POS_READY, 'ajaxLoad');
 		}
 	}
 }
-

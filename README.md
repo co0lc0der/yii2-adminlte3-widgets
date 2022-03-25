@@ -41,7 +41,7 @@ to the require section of your `composer.json` file.
 - `string $ajaxLoad = ''` - URL for loading data, if it is not empty it shows a spinner before data loaded
 - `string $ajaxOverlay = 'overlay'` - type of loading overlay ('overlay', 'dark')
 - `string $shadow = ''` - type of loading overlay ('shadow-none', 'shadow-sm', 'shadow', 'shadow-lg')
-- `array $items = []` - list of header custom items (labels, buttons, links)
+- `array $tools = []` - list of header custom tools (labels, buttons, links)
 
 ## How to use
 
@@ -58,7 +58,7 @@ Use `CardWidget` to add your content in adminLTE card
         'collapse' => true,         // show collapse button in card header
         'shadow' => 'shadow-sm',    // use small shadow
         'close' => true,            // show close button in card header
-        'items' => [                // array with config to add custom labels, buttons or links
+        'tools' => [                // array with config to add custom labels, buttons or links
             [
                 'label',
                 'new',
