@@ -43,56 +43,97 @@ to the require section of your `composer.json` file.
 - `string $shadow = ''` - type of loading overlay ('shadow-none', 'shadow-sm', 'shadow', 'shadow-lg')
 - `array $tools = []` - list of header custom tools (labels, buttons, links)
 
-## How to use
+## TabsCardWidget
 
-Use `CardWidget` to add your content in adminLTE card
+### Public properties, its types and default values
 
-### An example for CardWidget
+- `string $title` - title of a card
+- `string $color = ''` - color of a card header (Bootstrap 4 colors. 'success', 'danger' еtс.)
+- `bool $outline = false` - makes an outlined card
+- `bool $background = false` - makes a colored card, uses $color property (Bootstrap 4 colors)
+- `bool $gradient = false` - makes a gradient card, uses $color property (Bootstrap 4 colors)
+- `string $footer = ''` - content of card footer
+- `string $shadow = ''` - type of loading overlay ('shadow-none', 'shadow-sm', 'shadow', 'shadow-lg')
+- `array $tabs = []` - list of tabs (see an example below)
+
+## Examples
+
+### CardWidget
+
 ```php
-    <?php CardWidget::begin([
-        'title' => 'Some title',    // title of a card
-        'color' => 'dark',          // bootstrap color name 'success', 'danger' еtс.
-        'gradient' => true,         // use gradient background
-        'expand' => true,           // show maximize button in card header
-        'footer' => 'some footer',  // content of card footer
-        'collapse' => true,         // show collapse button in card header
-        'shadow' => 'shadow-sm',    // use small shadow
-        'close' => true,            // show close button in card header
-        'tools' => [                // array with config to add custom labels, buttons or links
+<?php CardWidget::begin([
+    'title' => 'Some title',    // title of a card
+    'color' => 'dark',          // bootstrap color name 'success', 'danger' еtс.
+    'gradient' => true,         // use gradient background
+    'expand' => true,           // show maximize button in card header
+    'footer' => 'some footer',  // content of card footer
+    'collapse' => true,         // show collapse button in card header
+    'shadow' => 'shadow-sm',    // use small shadow
+    'close' => true,            // show close button in card header
+    'tools' => [                // array with config to add custom labels, buttons or links
+        [
+            'label',
+            'new',
             [
-                'label',
-                'new',
-                [
-                    'class' => 'badge badge-primary',
-                    'data-toggle' => 'tooltip',
-                    'title' => 'New',
-                ],
+                'class' => 'badge badge-primary',
+                'data-toggle' => 'tooltip',
+                'title' => 'New',
             ],
-            [
-                'link',
-                '<i class="fas fa-pencil-alt" aria-hidden="true"></i>',
-                ['update', 'id' => 1],
-                [
-                    'title' => 'Update it',
-                ],
-            ],
-            [
-                'button',
-                '<i class="fas fa-cog"></i>',
-                [
-                    'class' => 'btn btn-tool',
-                    'title' => 'some tooltip',
-                ],
-            ]
         ],
-    ]);
-    ?>
+        [
+            'link',
+            '<i class="fas fa-pencil-alt" aria-hidden="true"></i>',
+            ['update', 'id' => 1],
+            [
+                'title' => 'Update it',
+            ],
+        ],
+        [
+            'button',
+            '<i class="fas fa-cog"></i>',
+            [
+                'class' => 'btn btn-tool',
+                'title' => 'some tooltip',
+            ],
+        ]
+    ],
+]);
+?>
 
-    <?php echo 'some content'; ?>
+<?= 'some content'; ?>
 
-    <?php CardWidget::end(); ?>
+<?php CardWidget::end(); ?>
 ```
 
 ### Rendered card
 
 ![Rendered card](https://code-notes.ru/card_example.png "Rendered card")
+
+### TabsCardWidget
+
+```php
+<?= TabsCardWidget::widget([
+    'title' => 'Tabs example',
+    'footer' => 'some footer',
+    'tabs' => [
+            [
+                'title' => 'Tab1',
+                'id' => 'tab_1',
+                'content' => 'A wonderful serenity has taken possession of my entire soul,
+                    like these sweet mornings of spring which I enjoy with my whole heart.',
+                'active' => true,
+            ],
+            [
+                'title' => 'Tab2',
+                'id' => 'tab_2',
+                'content' => 'The European languages are members of the same family. Their separate existence is a myth.
+                    For science, music, sport, etc, Europe uses the same vocabulary.',
+            ]
+        ]
+    ]);
+?>
+```
+
+### Rendered TabsCard
+
+![Rendered TabsCard](https://code-notes.ru/tabscard_example.png "Rendered TabsCard")
