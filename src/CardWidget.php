@@ -70,7 +70,8 @@ class CardWidget extends \yii\base\Widget
 	public bool $close = false;
 
 	/**
-	 * URL for loading data, if it is not empty it shows a spinner before data loaded
+	 * URL for loading data
+	 * if it is not empty it shows a spinner before data loaded
 	 * @var string
 	 */
 	public string $ajaxLoad = '';
@@ -140,20 +141,13 @@ class CardWidget extends \yii\base\Widget
 		ob_start();
 	}
 
-	/**
-	 * @return string
-	 */
 	public function run(): string
 	{
 		$this->registerJs();
 		$content = ob_get_clean();
 		$html = Html::beginTag('div', ['class' => $this->getCardClass()]);
 
-		$html .= Html::beginTag('div', ['class' => $this->getCardHeaderClass()]);
-		$html .= $this->getCardTitle();
-		$html .= $this->getCardTools();
-		$html .= Html::endTag('div'); // the end of a card header
-
+		$html .= $this->getCardHeader();
 		$html .= $this->getCardBody($content);
 		$html .= $this->getCardFooter();
 
@@ -163,6 +157,19 @@ class CardWidget extends \yii\base\Widget
 		}
 
 		$html .= Html::endTag('div'); // the end of a card
+
+		return $html;
+	}
+
+	/**
+	 * @return string
+	 */
+	private function getCardHeader(): string
+	{
+		$html = Html::beginTag('div', ['class' => $this->getCardHeaderClass()]);
+		$html .= $this->getCardTitle();
+		$html .= $this->getCardTools();
+		$html .= Html::endTag('div'); // the end of a card header
 
 		return $html;
 	}
@@ -199,7 +206,7 @@ class CardWidget extends \yii\base\Widget
 	{
 		$class = "card";
 
-		$class .= ($this->color && !$this->outline && !$this->background && !$this->gradient) ? " card-{$this->color}" : '';
+		$class .= ($this->color && !$this->background && !$this->gradient) ? " card-{$this->color}" : '';
 		$class .= ($this->outline && $this->color) ? ' card-outline' : '';
 		$class .= ($this->background && $this->color) ? " bg-{$this->color}" : '';
 		$class .= ($this->gradient && $this->color) ? " bg-gradient-{$this->color}" : '';

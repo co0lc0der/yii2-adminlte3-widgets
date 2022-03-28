@@ -2,7 +2,6 @@
 namespace co0lc0der\Lte3Widgets;
 
 use yii\bootstrap\Html;
-use yii\web\View;
 
 /**
  * Class TabsCardWidget
@@ -12,6 +11,7 @@ class TabsCardWidget extends \yii\base\Widget
 {
 	/**
 	 * title of a card
+	 * if title is empty tabs will be placed on the left side of the card header
 	 * @var string
 	 */
 	public string $title;
@@ -80,8 +80,6 @@ class TabsCardWidget extends \yii\base\Widget
 	public function init()
 	{
 		parent::init();
-
-		ob_start();
 	}
 
 	/**
@@ -89,18 +87,26 @@ class TabsCardWidget extends \yii\base\Widget
 	 */
 	public function run(): string
 	{
-		$content = ob_get_clean();
-		$html = Html::beginTag('div', ['class' => $this->getCardClass()/*, 'data-widget' => 'card-widget'*/]);
+		$html = Html::beginTag('div', ['class' => $this->getCardClass()]);
 
-		$html .= Html::beginTag('div', ['class' => $this->getCardHeaderClass()]);
-		$html .= $this->getCardTitle();
-		$html .= $this->getCardTabs();
-		$html .= Html::endTag('div'); // the end of a card header
-
+		$html .= $this->getCardHeader();
 		$html .= $this->getCardBody();
 		$html .= $this->getCardFooter();
 
 		$html .= Html::endTag('div'); // the end of a card
+
+		return $html;
+	}
+
+	/**
+	 * @return string
+	 */
+	private function getCardHeader(): string
+	{
+		$html = Html::beginTag('div', ['class' => $this->getCardHeaderClass()]);
+		$html .= $this->getCardTitle();
+		$html .= $this->getCardTabs();
+		$html .= Html::endTag('div'); // the end of a card header
 
 		return $html;
 	}
@@ -118,7 +124,9 @@ class TabsCardWidget extends \yii\base\Widget
 			$html .= Html::tag('li', $link, ['class' => 'nav-item']);
 		}
 
-		return (!empty($html)) ? Html::tag('ul', $html, ['class' => 'nav nav-pills ml-auto p-2']) : '';
+		$left = (!empty($this->title)) ? ' ml-auto' : '';
+
+		return (!empty($html)) ? Html::tag('ul', $html, ['class' => "nav nav-pills{$left} p-2"]) : ''; '';
 	}
 
 	/**
@@ -168,7 +176,7 @@ class TabsCardWidget extends \yii\base\Widget
 	{
 		$class = "card";
 
-		$class .= ($this->color && !$this->outline && !$this->background && !$this->gradient) ? " card-{$this->color}" : '';
+		$class .= ($this->color && !$this->background && !$this->gradient) ? " card-{$this->color}" : '';
 		$class .= ($this->outline && $this->color) ? ' card-outline' : '';
 		$class .= ($this->background && $this->color) ? " bg-{$this->color}" : '';
 		$class .= ($this->gradient && $this->color) ? " bg-gradient-{$this->color}" : '';

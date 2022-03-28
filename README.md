@@ -47,7 +47,7 @@ to the require section of your `composer.json` file.
 
 ### Public properties, its types and default values
 
-- `string $title` - title of a card
+- `string $title` - title of a card, if title is empty tabs will be placed on the left side of the card header
 - `string $color = ''` - color of a card header (Bootstrap 4 colors. 'success', 'danger' еtс.)
 - `bool $outline = false` - makes an outlined card
 - `bool $background = false` - makes a colored card, uses $color property (Bootstrap 4 colors)
@@ -137,3 +137,7 @@ to the require section of your `composer.json` file.
 ### Rendered TabsCard
 
 ![Rendered TabsCard](https://code-notes.ru/tabscard_example.png "Rendered TabsCard")
+
+### Rendered TabsCard without title
+
+![Rendered TabsCard without title](https://code-notes.ru/tabscard_example2.png "Rendered TabsCard without title")
