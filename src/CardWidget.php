@@ -63,6 +63,7 @@ class CardWidget extends \yii\base\Widget
 	 * @var bool
 	 */
 	public bool $expand = false;
+
 	/**
 	 * show / hide maximize button inside card header
 	 * @var bool
@@ -83,7 +84,7 @@ class CardWidget extends \yii\base\Widget
 	public string $ajaxOverlay = 'overlay';
 
 	/**
-	 * type of loading overlay
+	 * type of card shadow
 	 * ('shadow-none', 'shadow-sm', 'shadow', 'shadow-lg')
 	 * @var string
 	 */
@@ -179,7 +180,7 @@ class CardWidget extends \yii\base\Widget
 	 */
 	private function getCardTitle(): string
 	{
-		return (!empty($this->title)) ? Html::tag('h3', $this->title, ['class' => 'card-title']) : '';
+		return (!empty($this->title)) ? Html::tag('h3', Html::encode($this->title), ['class' => 'card-title']) : '';
 	}
 
 	/**

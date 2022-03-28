@@ -47,7 +47,7 @@ class TabsCardWidget extends \yii\base\Widget
 	public string $footer = '';
 
 	/**
-	 * type of loading overlay
+	 * type of card shadow
 	 * ('shadow-none', 'shadow-sm', 'shadow', 'shadow-lg')
 	 * @var string
 	 */
@@ -138,7 +138,7 @@ class TabsCardWidget extends \yii\base\Widget
 
 		if (!empty($this->title)) {
 			$class = (!empty($this->tabs)) ? 'card-title p-3' : 'card-title';
-			$html = Html::tag('h3', $this->title, ['class' => $class]);
+			$html = Html::tag('h3', Html::encode($this->title), ['class' => $class]);
 		}
 
 		return $html;

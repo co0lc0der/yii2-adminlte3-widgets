@@ -4,7 +4,13 @@
 [![Packagist Downloads](https://img.shields.io/packagist/dt/co0lc0der/yii2-adminlte3-widgets?color=yellow&style=flat-square)](https://packagist.org/packages/co0lc0der/yii2-adminlte3-widgets)
 [![GitHub license](https://img.shields.io/github/license/co0lc0der/yii2-adminlte3-widgets?style=flat-square)](https://github.com/co0lc0der/yii2-adminlte3-widgets/blob/main/LICENSE.md)
 
-AdminLTE 3 widgets for Yii2. At present time the extension has CardWidget only. More widgets, helpers and Gii will be added in the future.
+AdminLTE 3 widgets for Yii2. At present time the extension includes
+
+* CardWidget
+* TabsCardWidget
+* ProfileCardWidget
+
+More widgets, helpers and Gii will be added in the future.
 
 ## Installation
 
@@ -40,7 +46,7 @@ to the require section of your `composer.json` file.
 - `bool $close = false` - show / hide close button inside card header
 - `string $ajaxLoad = ''` - URL for loading data, if it is not empty it shows a spinner before data loaded
 - `string $ajaxOverlay = 'overlay'` - type of loading overlay ('overlay', 'dark')
-- `string $shadow = ''` - type of loading overlay ('shadow-none', 'shadow-sm', 'shadow', 'shadow-lg')
+- `string $shadow = ''` - type of card shadow ('shadow-none', 'shadow-sm', 'shadow', 'shadow-lg')
 - `array $tools = []` - list of header custom tools (labels, buttons, links)
 
 ## TabsCardWidget
@@ -53,8 +59,20 @@ to the require section of your `composer.json` file.
 - `bool $background = false` - makes a colored card, uses $color property (Bootstrap 4 colors)
 - `bool $gradient = false` - makes a gradient card, uses $color property (Bootstrap 4 colors)
 - `string $footer = ''` - content of card footer
-- `string $shadow = ''` - type of loading overlay ('shadow-none', 'shadow-sm', 'shadow', 'shadow-lg')
+- `string $shadow = ''` - type of card shadow ('shadow-none', 'shadow-sm', 'shadow', 'shadow-lg')
 - `array $tabs = []` - list of tabs (see an example below)
+
+## ProfileCardWidget
+
+### Public properties, its types and default values
+
+- `string $name` - user name
+- `string $image = ''` - user image
+- `string $position = ''` - user role or position
+- `string $color = ''` - color of a card header (Bootstrap 4 colors. 'success', 'danger' еtс.)
+- `string $footer = ''` - content of card footer
+- `string $shadow = ''` - type of card shadow ('shadow-none', 'shadow-sm', 'shadow', 'shadow-lg')
+- `array $rows = []` - list of rows (see an example below)
 
 ## Examples
 
@@ -67,7 +85,6 @@ to the require section of your `composer.json` file.
     'gradient' => true,         // use gradient background
     'expand' => true,           // show maximize button in card header
     'footer' => 'some footer',  // content of card footer
-    'collapse' => true,         // show collapse button in card header
     'shadow' => 'shadow-sm',    // use small shadow
     'close' => true,            // show close button in card header
     'tools' => [                // array with config to add custom labels, buttons or links
@@ -84,9 +101,7 @@ to the require section of your `composer.json` file.
             'link',
             '<i class="fas fa-pencil-alt" aria-hidden="true"></i>',
             ['update', 'id' => 1],
-            [
-                'title' => 'Update it',
-            ],
+            ['title' => 'Update it'],
         ],
         [
             'button',
@@ -116,21 +131,21 @@ to the require section of your `composer.json` file.
     'title' => 'Tabs example',
     'footer' => 'some footer',
     'tabs' => [
-            [
-                'title' => 'Tab1',
-                'id' => 'tab_1',
-                'content' => 'A wonderful serenity has taken possession of my entire soul,
-                    like these sweet mornings of spring which I enjoy with my whole heart.',
-                'active' => true,
-            ],
-            [
-                'title' => 'Tab2',
-                'id' => 'tab_2',
-                'content' => 'The European languages are members of the same family. Their separate existence is a myth.
-                    For science, music, sport, etc, Europe uses the same vocabulary.',
-            ]
+        [
+            'title' => 'Tab1',
+            'id' => 'tab_1',
+            'content' => 'A wonderful serenity has taken possession of my entire soul,
+                like these sweet mornings of spring which I enjoy with my whole heart.',
+            'active' => true,
+        ],
+        [
+            'title' => 'Tab2',
+            'id' => 'tab_2',
+            'content' => 'The European languages are members of the same family. Their separate existence is a myth.
+                For science, music, sport, etc, Europe uses the same vocabulary.',
         ]
-    ]);
+    ]
+]);
 ?>
 ```
 
@@ -141,3 +156,35 @@ to the require section of your `composer.json` file.
 ### Rendered TabsCard without title
 
 ![Rendered TabsCard without title](https://code-notes.ru/tabscard_example2.png "Rendered TabsCard without title")
+
+### ProfileCardWidget
+
+```php
+<?php ProfileCardWidget::begin([
+    'name' => 'Jonathan Burke Jr.',
+    'position' => 'Software Engineer',
+    'image' => '../avatars/user2-160x160.jpg',
+    'color' => 'info',
+    'rows' => [
+        'Followers' => [
+            '1,521',
+            '#url'
+        ],
+        'Following'	=> ['373'],
+        'Friends'	=> ['3,127'],
+        'Projects'	=> [
+            '7',
+            'https://example.com'
+        ],
+    ],
+]);
+?>
+
+<a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
+
+<?php ProfileCardWidget::end();?>
+```
+
+### Rendered ProfileCard
+
+![Rendered ProfileCard](https://code-notes.ru/profilecard_example.png "Rendered ProfileCard")
