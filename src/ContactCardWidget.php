@@ -73,42 +73,13 @@ class ContactCardWidget extends \yii\base\Widget
 	public $footer = '';
 
 	/**
-	 * show / hide collapse button inside card header
-	 * @var bool
-	 */
-	public bool $collapse = true;
-
-	/**
-	 * show / hide a collapsed card after initialization
-	 * @var bool
-	 */
-	public bool $hide = false;
-
-	/**
-	 * show / hide collapse button inside card header
-	 * @var bool
-	 */
-
-	public bool $expand = false;
-
-	/**
-	 * show / hide close button inside card header
-	 * @var bool
-	 */
-	public bool $close = false;
-
-	/**
 	 * type of card shadow
 	 * ('shadow-none', 'shadow-sm', 'shadow', 'shadow-lg')
 	 * @var string
 	 */
 	public string $shadow = '';
 
-	/**
-	 * list of header custom tools (labels, buttons, links)
-	 * @var array
-	 */
-	public array $tools = [];
+	use CardToolsSupportTrait;
 
 	/**
 	 * @return void
@@ -117,41 +88,7 @@ class ContactCardWidget extends \yii\base\Widget
 	{
 		parent::init();
 
-		if ($this->collapse) {
-			$this->tools[] = [
-				'button',
-				($this->hide) ? '<i class="fas fa-plus"></i>' : '<i class="fas fa-minus"></i>',
-				[
-					'class' => 'btn btn-tool',
-					'data-card-widget' => 'collapse',
-					'title' => 'Свернуть/Развернуть',
-				]
-			];
-		}
-
-		if ($this->expand) {
-			$this->tools[] = [
-				'button',
-				'<i class="fas fa-expand"></i>',
-				[
-					'class' => 'btn btn-tool',
-					'data-card-widget' => 'maximize',
-					'title' => 'На весь экран',
-				]
-			];
-		}
-
-		if ($this->close) {
-			$this->tools[] = [
-				'button',
-				'<i class="fas fa-times"></i>',
-				[
-					'class' => 'btn btn-tool',
-					'data-card-widget' => 'remove',
-					'title' => 'Закрыть',
-				]
-			];
-		}
+		$this->addStandardTools();
 	}
 
 	/**
@@ -189,28 +126,6 @@ class ContactCardWidget extends \yii\base\Widget
 	private function getCardTitle(): string
 	{
 		return (!empty($this->position)) ? Html::encode($this->position) : '';
-	}
-
-	/**
-	 * @return string
-	 */
-	private function getCardTools(): string
-	{
-		$html = '';
-
-		if (is_array($this->tools)) {
-			foreach ($this->tools as $item) {
-				if ($item[0] == 'button') {
-					$html .= Html::button($item[1], array_merge(['class' => 'btn btn-tool'], $item[2]));
-				} else if ($item[0] == 'label') {
-					$html .= Html::tag('span', $item[1], $item[2]);
-				} else {
-					$html .= Html::a($item[1], $item[2], array_merge(['class' => 'btn btn-tool'], $item[3]));
-				}
-			}
-		}
-
-		return (!empty($html)) ? Html::tag('div', $html, ['class' => 'card-tools']) : '';
 	}
 
 	/**

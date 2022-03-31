@@ -47,30 +47,6 @@ class CardWidget extends \yii\base\Widget
 	public string $footer = '';
 
 	/**
-	 * show / hide collapse button inside card header
-	 * @var bool
-	 */
-	public bool $collapse = true;
-
-	/**
-	 * show / hide a collapsed card after initialization
-	 * @var bool
-	 */
-	public bool $hide = false;
-
-	/**
-	 * show / hide collapse button inside card header
-	 * @var bool
-	 */
-	public bool $expand = false;
-
-	/**
-	 * show / hide close button inside card header
-	 * @var bool
-	 */
-	public bool $close = false;
-
-	/**
 	 * URL for loading data
 	 * if it is not empty it shows a spinner before data loaded
 	 * @var string
@@ -90,11 +66,7 @@ class CardWidget extends \yii\base\Widget
 	 */
 	public string $shadow = '';
 
-	/**
-	 * list of header custom tools (labels, buttons, links)
-	 * @var array
-	 */
-	public array $tools = [];
+	use CardToolsSupportTrait;
 
 	/**
 	 * @return void
@@ -103,50 +75,19 @@ class CardWidget extends \yii\base\Widget
 	{
 		parent::init();
 
-		if ($this->collapse) {
-			$this->items[] = [
-				'button',
-				($this->hide) ? '<i class="fas fa-plus"></i>' : '<i class="fas fa-minus"></i>',
-				[
-					'class' => 'btn btn-tool',
-					'data-card-widget' => 'collapse',
-					'title' => 'Collapse/Развернуть',
-				]
-			];
-		}
-
-		if ($this->expand) {
-			$this->items[] = [
-				'button',
-				'<i class="fas fa-expand"></i>',
-				[
-					'class' => 'btn btn-tool',
-					'data-card-widget' => 'maximize',
-					'title' => 'Maximize',
-				]
-			];
-		}
-
-		if ($this->close) {
-			$this->items[] = [
-				'button',
-				'<i class="fas fa-times"></i>',
-				[
-					'class' => 'btn btn-tool',
-					'data-card-widget' => 'remove',
-					'title' => 'Close',
-				]
-			];
-		}
+		$this->addStandardTools();
 
 		ob_start();
 	}
 
+	/**
+	 * @return string
+	 */
 	public function run(): string
 	{
 		$this->registerJs();
 		$content = ob_get_clean();
-		$html = Html::beginTag('div', ['class' => $this->getCardClass()]);
+		$html = Html::beginTag('div', ['class' => $this->getCardClass(), 'data-widget' => 'card-widget']);
 
 		$html .= $this->getCardHeader();
 		$html .= $this->getCardBody($content);
@@ -203,28 +144,6 @@ class CardWidget extends \yii\base\Widget
 	/**
 	 * @return string
 	 */
-	private function getCardTools(): string
-	{
-		$html = '';
-
-		if (is_array($this->tools)) {
-			foreach ($this->tools as $item) {
-				if ($item[0] == 'button') {
-					$html .= Html::button($item[1], array_merge(['class' => 'btn btn-tool'], $item[2]));
-				} else if ($item[0] == 'label') {
-					$html .= Html::tag('span', $item[1], $item[2]);
-				} else {
-					$html .= Html::a($item[1], $item[2], array_merge(['class' => 'btn btn-tool'], $item[3]));
-				}
-			}
-		}
-
-		return (!empty($html)) ? Html::tag('div', $html, ['class' => 'card-tools']) : '';
-	}
-
-	/**
-	 * @return string
-	 */
 	private function getCardClass(): string
 	{
 		$class = "card";
@@ -270,12 +189,12 @@ class CardWidget extends \yii\base\Widget
 	{
 		if ($this->ajaxLoad) {
 			$this->view->registerJs("
-          $.each($('[data-ajax-load-url]'), function(i, el) {
-						let url = $(el).attr('data-ajax-load-url');
-						$(el).siblings('.card-body').load(url, function() {
-							$(el).remove();
-						});
-          });
+           $.each($('[data-ajax-load-url]'), function(i, el) {
+              let url = $(el).attr('data-ajax-load-url');
+              $(el).siblings('.card-body').load(url, function() {
+                $(el).remove();
+              });
+           });
         ", View::POS_READY, 'ajaxLoad');
 		}
 	}

@@ -11,7 +11,7 @@ AdminLTE 3 widgets for Yii2. At present time the extension includes
 * [ProfileCardWidget](#profilecardwidget)
 * [ContactCardWidget](#contactcardwidget)
 
-More widgets, helpers and Gii will be added in the future.
+**Based on [AdminLTE 3.1.0](https://github.com/ColorlibHQ/AdminLTE/releases/tag/v3.1.0)** More widgets, helpers and Gii will be added in the future.
 
 ## Installation
 
