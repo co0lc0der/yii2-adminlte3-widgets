@@ -9,6 +9,7 @@ AdminLTE 3 widgets for Yii2. At present time the extension includes
 * CardWidget
 * TabsCardWidget
 * ProfileCardWidget
+* ContactCardWidget
 
 More widgets, helpers and Gii will be added in the future.
 
@@ -73,6 +74,27 @@ to the require section of your `composer.json` file.
 - `string $footer = ''` - content of card footer
 - `string $shadow = ''` - type of card shadow ('shadow-none', 'shadow-sm', 'shadow', 'shadow-lg')
 - `array $rows = []` - list of rows (see an example below)
+
+## ContactCardWidget
+
+### Public properties, its types and default values
+
+- `string $name` - user name
+- `string $image = ''` - user image
+- `string $position = ''` - user role or position (title of a card)
+- `$about = ''` - about user. format: array ['Web Designer', 'UX'] or string
+- `string $aboutTitle = 'About: '` - about title
+- `string $aboutSeparator = ' / '` - separator of about user if it is an array
+- `array $info = []` - list of rows. format: FontAwesome icon => text
+- `string $color = ''` - color of a card header (Bootstrap 4 colors. 'success', 'danger' еtс.)
+- `bool $outline = false` - makes an outlined card
+- `$footer = ''` - content of card footer, it can be some string or an array of buttons
+- `string $shadow = ''` - type of card shadow ('shadow-none', 'shadow-sm', 'shadow', 'shadow-lg')
+- `bool $collapse = true` - show / hide collapse button inside card header
+- `bool $hide = false` - show / hide a collapsed card after initialization
+- `bool $expand = false` - show / hide maximize button inside card header
+- `bool $close = false` - show / hide close button inside card header
+- `array $tools = []` - list of header custom tools (labels, buttons, links)
 
 ## Examples
 
@@ -188,3 +210,42 @@ to the require section of your `composer.json` file.
 ### Rendered ProfileCard
 
 ![Rendered ProfileCard](https://code-notes.ru/profilecard_example.png "Rendered ProfileCard")
+
+### ContactCardWidget
+
+```php
+<?= ContactCardWidget::widget([
+    'name' => 'Jonathan Burke Jr.',
+    'position' => 'Software Engineer',
+    'image' => '../avatars/user2-160x160.jpg',
+    'color' => 'info',
+    'outline' => true,
+    'close' => true,
+    'aboutTitle' => 'Skills: ',
+    'about' => ['Web Designer', 'UX', 'Graphic Artist', 'Coffee Lover'],
+    'info' => [
+        'fa-building' => 'Address: Demo Street 123, Demo City 04312, NJ',
+        'fa-phone' => 'Phone #: <a href="tel:+80012122352">+ 800 - 12 12 23 52</a>',
+        'fa-envelope' => 'Email: <a href="mailto:jonatan@example.com">jonatan@example.com</a>',
+    ],
+    'footer' => [
+        [
+            '<i class="fas fa-comments"></i>',
+            'bg-teal',
+            ['update', 'id' => 1],
+            [],
+        ],
+        [
+            '<i class="fas fa-user"></i> View profile',
+            'btn-primary',
+            '#profile',
+            [],
+        ],
+    ],
+]);
+?>
+```
+
+### Rendered ContactCard
+
+![Rendered ContactCard](https://code-notes.ru/contactcard_example.png "Rendered ContactCard")

@@ -1,6 +1,7 @@
 .idea
 composer.lock
 vendor/
+img/
 
 # Windows image file caches
 Thumbs.db
