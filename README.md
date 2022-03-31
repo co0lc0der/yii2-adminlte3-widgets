@@ -6,10 +6,10 @@
 
 AdminLTE 3 widgets for Yii2. At present time the extension includes
 
-* CardWidget
-* TabsCardWidget
-* ProfileCardWidget
-* ContactCardWidget
+* [CardWidget](#cardwidget)
+* [TabsCardWidget](#tabscardwidget)
+* [ProfileCardWidget](#profilecardwidget)
+* [ContactCardWidget](#contactcardwidget)
 
 More widgets, helpers and Gii will be added in the future.
 
@@ -50,55 +50,7 @@ to the require section of your `composer.json` file.
 - `string $shadow = ''` - type of card shadow ('shadow-none', 'shadow-sm', 'shadow', 'shadow-lg')
 - `array $tools = []` - list of header custom tools (labels, buttons, links)
 
-## TabsCardWidget
-
-### Public properties, its types and default values
-
-- `string $title` - title of a card, if title is empty tabs will be placed on the left side of the card header
-- `string $color = ''` - color of a card header (Bootstrap 4 colors. 'success', 'danger' еtс.)
-- `bool $outline = false` - makes an outlined card
-- `bool $background = false` - makes a colored card, uses $color property (Bootstrap 4 colors)
-- `bool $gradient = false` - makes a gradient card, uses $color property (Bootstrap 4 colors)
-- `string $footer = ''` - content of card footer
-- `string $shadow = ''` - type of card shadow ('shadow-none', 'shadow-sm', 'shadow', 'shadow-lg')
-- `array $tabs = []` - list of tabs (see an example below)
-
-## ProfileCardWidget
-
-### Public properties, its types and default values
-
-- `string $name` - user name
-- `string $image = ''` - user image
-- `string $position = ''` - user role or position
-- `string $color = ''` - color of a card header (Bootstrap 4 colors. 'success', 'danger' еtс.)
-- `string $footer = ''` - content of card footer
-- `string $shadow = ''` - type of card shadow ('shadow-none', 'shadow-sm', 'shadow', 'shadow-lg')
-- `array $rows = []` - list of rows (see an example below)
-
-## ContactCardWidget
-
-### Public properties, its types and default values
-
-- `string $name` - user name
-- `string $image = ''` - user image
-- `string $position = ''` - user role or position (title of a card)
-- `$about = ''` - about user. format: array ['Web Designer', 'UX'] or string
-- `string $aboutTitle = 'About: '` - about title
-- `string $aboutSeparator = ' / '` - separator of about user if it is an array
-- `array $info = []` - list of rows. format: FontAwesome icon => text
-- `string $color = ''` - color of a card header (Bootstrap 4 colors. 'success', 'danger' еtс.)
-- `bool $outline = false` - makes an outlined card
-- `$footer = ''` - content of card footer, it can be some string or an array of buttons
-- `string $shadow = ''` - type of card shadow ('shadow-none', 'shadow-sm', 'shadow', 'shadow-lg')
-- `bool $collapse = true` - show / hide collapse button inside card header
-- `bool $hide = false` - show / hide a collapsed card after initialization
-- `bool $expand = false` - show / hide maximize button inside card header
-- `bool $close = false` - show / hide close button inside card header
-- `array $tools = []` - list of header custom tools (labels, buttons, links)
-
-## Examples
-
-### CardWidget
+### Example
 
 ```php
 <?php CardWidget::begin([
@@ -146,7 +98,20 @@ to the require section of your `composer.json` file.
 
 ![Rendered card](https://code-notes.ru/card_example.png "Rendered card")
 
-### TabsCardWidget
+## TabsCardWidget
+
+### Public properties, its types and default values
+
+- `string $title` - title of a card, if title is empty tabs will be placed on the left side of the card header
+- `string $color = ''` - color of a card header (Bootstrap 4 colors. 'success', 'danger' еtс.)
+- `bool $outline = false` - makes an outlined card
+- `bool $background = false` - makes a colored card, uses $color property (Bootstrap 4 colors)
+- `bool $gradient = false` - makes a gradient card, uses $color property (Bootstrap 4 colors)
+- `string $footer = ''` - content of card footer
+- `string $shadow = ''` - type of card shadow ('shadow-none', 'shadow-sm', 'shadow', 'shadow-lg')
+- `array $tabs = []` - list of tabs (see an example below)
+
+### Example
 
 ```php
 <?= TabsCardWidget::widget([
@@ -179,7 +144,19 @@ to the require section of your `composer.json` file.
 
 ![Rendered TabsCard without title](https://code-notes.ru/tabscard_example2.png "Rendered TabsCard without title")
 
-### ProfileCardWidget
+## ProfileCardWidget
+
+### Public properties, its types and default values
+
+- `string $name` - user name
+- `string $image = ''` - user image
+- `string $position = ''` - user role or position
+- `string $color = ''` - color of a card header (Bootstrap 4 colors. 'success', 'danger' еtс.)
+- `string $footer = ''` - content of card footer
+- `string $shadow = ''` - type of card shadow ('shadow-none', 'shadow-sm', 'shadow', 'shadow-lg')
+- `array $rows = []` - list of rows (see an example below)
+
+### Example
 
 ```php
 <?php ProfileCardWidget::begin([
@@ -211,7 +188,28 @@ to the require section of your `composer.json` file.
 
 ![Rendered ProfileCard](https://code-notes.ru/profilecard_example.png "Rendered ProfileCard")
 
-### ContactCardWidget
+## ContactCardWidget
+
+### Public properties, its types and default values
+
+- `string $name` - user name
+- `string $image = ''` - user image
+- `string $position = ''` - user role or position (title of a card)
+- `$about = ''` - about user. format: array ['Web Designer', 'UX'] or string
+- `string $aboutTitle = 'About: '` - about title
+- `string $aboutSeparator = ' / '` - separator of about user if it is an array
+- `array $info = []` - list of rows. format: FontAwesome icon => text
+- `string $color = ''` - color of a card header (Bootstrap 4 colors. 'success', 'danger' еtс.)
+- `bool $outline = false` - makes an outlined card
+- `$footer = ''` - content of card footer, it can be some string or an array of buttons
+- `string $shadow = ''` - type of card shadow ('shadow-none', 'shadow-sm', 'shadow', 'shadow-lg')
+- `bool $collapse = true` - show / hide collapse button inside card header
+- `bool $hide = false` - show / hide a collapsed card after initialization
+- `bool $expand = false` - show / hide maximize button inside card header
+- `bool $close = false` - show / hide close button inside card header
+- `array $tools = []` - list of header custom tools (labels, buttons, links)
+
+### Example
 
 ```php
 <?= ContactCardWidget::widget([
