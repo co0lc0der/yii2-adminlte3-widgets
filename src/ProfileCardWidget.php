@@ -102,7 +102,7 @@ class ProfileCardWidget extends \yii\base\Widget
 
 		$html .= $content;
 
-		return Html::tag('div', $html, ['class' => 'card-body box-profile']);
+		return Html::tag('div', $html, ['class' => $this->getCardBodyClass()]);
 	}
 
 	/**
@@ -110,7 +110,7 @@ class ProfileCardWidget extends \yii\base\Widget
 	 */
 	private function getCardFooter(): string
 	{
-		return (!empty($this->footer)) ? Html::tag('div', $this->footer, ['class' => 'card-footer']) : '';
+		return (!empty($this->footer)) ? Html::tag('div', $this->footer, ['class' => $this->getCardFooterClass()]) : '';
 	}
 
 	/**
@@ -152,5 +152,21 @@ class ProfileCardWidget extends \yii\base\Widget
 		$class .= ($this->shadow) ? " {$this->shadow}" : '';
 
 		return $class;
+	}
+
+	/**
+	 * @return string
+	 */
+	private function getCardBodyClass(): string
+	{
+		return 'card-body box-profile';
+	}
+
+	/**
+	 * @return string
+	 */
+	private function getCardFooterClass(): string
+	{
+		return 'card-footer';
 	}
 }

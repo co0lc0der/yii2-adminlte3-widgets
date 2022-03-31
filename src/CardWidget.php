@@ -65,7 +65,7 @@ class CardWidget extends \yii\base\Widget
 	public bool $expand = false;
 
 	/**
-	 * show / hide maximize button inside card header
+	 * show / hide close button inside card header
 	 * @var bool
 	 */
 	public bool $close = false;
@@ -189,7 +189,7 @@ class CardWidget extends \yii\base\Widget
 	 */
 	private function getCardBody(string $content = ''): string
 	{
-		return (!empty($content)) ? Html::tag('div', $content, ['class' => 'card-body']) : '';
+		return (!empty($content)) ? Html::tag('div', $content, ['class' => $this->getCardBodyClass()]) : '';
 	}
 
 	/**
@@ -197,7 +197,29 @@ class CardWidget extends \yii\base\Widget
 	 */
 	private function getCardFooter(): string
 	{
-		return (!empty($this->footer)) ? Html::tag('div', $this->footer, ['class' => 'card-footer']) : '';
+		return (!empty($this->footer)) ? Html::tag('div', $this->footer, ['class' => $this->getCardFooterClass()]) : '';
+	}
+
+	/**
+	 * @return string
+	 */
+	private function getCardTools(): string
+	{
+		$html = '';
+
+		if (is_array($this->tools)) {
+			foreach ($this->tools as $item) {
+				if ($item[0] == 'button') {
+					$html .= Html::button($item[1], array_merge(['class' => 'btn btn-tool'], $item[2]));
+				} else if ($item[0] == 'label') {
+					$html .= Html::tag('span', $item[1], $item[2]);
+				} else {
+					$html .= Html::a($item[1], $item[2], array_merge(['class' => 'btn btn-tool'], $item[3]));
+				}
+			}
+		}
+
+		return (!empty($html)) ? Html::tag('div', $html, ['class' => 'card-tools']) : '';
 	}
 
 	/**
@@ -222,31 +244,23 @@ class CardWidget extends \yii\base\Widget
 	 */
 	private function getCardHeaderClass(): string
 	{
-		$class = 'card-header';
-
-		return $class;
+		return 'card-header';
 	}
 
 	/**
 	 * @return string
 	 */
-	private function getCardTools(): string
+	private function getCardBodyClass(): string
 	{
-		$html = '';
+		return 'card-body';
+	}
 
-		if (is_array($this->tools)) {
-			foreach ($this->tools as $item) {
-				if ($item[0] == 'button') {
-					$html .= Html::button($item[1], array_merge(['class' => 'btn btn-tool'], $item[2]));
-				} else if ($item[0] == 'label') {
-					$html .= Html::tag('span', $item[1], $item[2]);
-				} else {
-					$html .= Html::a($item[1], $item[2], array_merge(['class' => 'btn btn-tool'], $item[3]));
-				}
-			}
-		}
-
-		return (!empty($html)) ? Html::tag('div', $html, ['class' => 'card-tools']) : '';
+	/**
+	 * @return string
+	 */
+	private function getCardFooterClass(): string
+	{
+		return 'card-footer';
 	}
 
 	/**

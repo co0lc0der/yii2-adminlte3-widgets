@@ -87,7 +87,7 @@ class TabsCardWidget extends \yii\base\Widget
 	 */
 	public function run(): string
 	{
-		$html = Html::beginTag('div', ['class' => $this->getCardClass()]);
+		$html = Html::beginTag('div', ['class' => $this->getCardClass()/*, 'data-widget' => 'card-widget'*/]);
 
 		$html .= $this->getCardHeader();
 		$html .= $this->getCardBody();
@@ -126,7 +126,7 @@ class TabsCardWidget extends \yii\base\Widget
 
 		$left = (!empty($this->title)) ? ' ml-auto' : '';
 
-		return (!empty($html)) ? Html::tag('ul', $html, ['class' => "nav nav-pills{$left} p-2"]) : ''; '';
+		return (!empty($html)) ? Html::tag('ul', $html, ['class' => "nav nav-pills{$left} p-2"]) : '';
 	}
 
 	/**
@@ -158,7 +158,7 @@ class TabsCardWidget extends \yii\base\Widget
 
 		$html .= Html::endTag('div');
 
-		return Html::tag('div', $html, ['class' => 'card-body']);
+		return Html::tag('div', $html, ['class' => $this->getCardBodyClass()]);
 	}
 
 	/**
@@ -166,7 +166,7 @@ class TabsCardWidget extends \yii\base\Widget
 	 */
 	private function getCardFooter(): string
 	{
-		return (!empty($this->footer)) ? Html::tag('div', $this->footer, ['class' => 'card-footer']) : '';
+		return (!empty($this->footer)) ? Html::tag('div', $this->footer, ['class' => $this->getCardFooterClass()]) : '';
 	}
 
 	/**
@@ -197,5 +197,21 @@ class TabsCardWidget extends \yii\base\Widget
 		}
 
 		return $class;
+	}
+
+	/**
+	 * @return string
+	 */
+	private function getCardBodyClass(): string
+	{
+		return 'card-body';
+	}
+
+	/**
+	 * @return string
+	 */
+	private function getCardFooterClass(): string
+	{
+		return 'card-footer';
 	}
 }
