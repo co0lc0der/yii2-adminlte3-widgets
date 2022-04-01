@@ -43,7 +43,7 @@ trait CardToolsSupportTrait
 	/**
 	 * @return string
 	 */
-	private function getCardTools(): string
+	protected function getCardTools(): string
 	{
 		$html = '';
 
@@ -65,7 +65,7 @@ trait CardToolsSupportTrait
 	/**
 	 * @return void
 	 */
-	private function addStandardTools(): void
+	protected function addStandardTools(): void
 	{
 		if ($this->collapse) {
 			$this->items[] = [

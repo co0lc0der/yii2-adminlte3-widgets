@@ -10,6 +10,7 @@ AdminLTE 3 widgets for Yii2. At present time the extension includes
 * [TabsCardWidget](#tabscardwidget)
 * [ProfileCardWidget](#profilecardwidget)
 * [ContactCardWidget](#contactcardwidget)
+* [DirectChatWidget](#directchatwidget)
 
 **Based on [AdminLTE 3.1.0](https://github.com/ColorlibHQ/AdminLTE/releases/tag/v3.1.0)** More widgets, helpers and Gii will be added in the future.
 
@@ -247,3 +248,104 @@ to the require section of your `composer.json` file.
 ### Rendered ContactCard
 
 ![Rendered ContactCard](https://code-notes.ru/contactcard_example.png "Rendered ContactCard")
+
+## DirectChatWidget
+
+This class is extended of CardWidget therefore it has the same properties but it has its own properties listed below.
+
+### Public properties (excluding CardWidget properties), its types and default values
+
+- `string $chatColor = 'primary'` - chat messages color (Bootstrap 4 colors. 'success', 'danger' еtс.)
+- `string $author = ''` - author's name, this property is used to highlight author's messages with $chatColor
+- `array $messages = []` - array of messages
+- `array $contacts = []` - contacts list. if it is empty there will be no chat icon in the header of the chat
+- `string $noMessages = 'There is no messages in the chat'` - the message which will be shown if $messages is empty
+- `string $sendFormUrl = ''` - URL to send a new message
+- `string $sendFormButtonTitle = 'Send'` - title of send button
+- `string $sendFormPlaceholder = 'Type Message ...'` - placeholder for send form
+
+### Example
+
+```php
+<?php DirectChatWidget::begin([
+    'title' => 'Admin direct chat',
+    'color' => 'info',
+    'chatColor' => 'info',
+    'close' => true,
+    'author' => 'Admin',
+    'sendFormPlaceholder' => 'Type your message here ...',
+    'sendFormButtonTitle' => '<i class="fas fa-paper-plane"></i>',
+    'tools' => [
+        [
+            'label',
+            '3',
+            [
+                'class' => 'badge badge-dark',
+                'title' => '3 new messages',
+            ],
+        ],
+    ],
+    'messages' => [
+        [
+            'Admin',
+            '23 Jan 2:00 pm',
+            '../assets/img/user1-128x128.jpg',
+            'Is this template really for free? That\'s unbelievable!',
+        ],
+        [
+            'Sarah Bullock',
+            '23 Jan 2:04 pm',
+            '../assets/img/user5-128x128.jpg',
+            'You better believe it!',
+        ],
+        [
+            'Admin',
+            '23 Jan 5:07 pm',
+            '../assets/img/user1-128x128.jpg',
+            'Working with AdminLTE on a great new app! Wanna join?',
+        ],
+        [
+            'Sarah Bullock',
+            '23 Jan 6:10 pm',
+            '../assets/img/user5-128x128.jpg',
+            'I would love to.',
+        ],
+        [
+            'Admin',
+            '25 Jan 1:00 pm',
+            '../assets/img/user1-128x128.jpg',
+            'test message!',
+        ],
+    ],
+    'contacts' => [
+        [
+            'Admin',
+            '1/28/2022',
+            '../assets/img/user1-128x128.jpg',
+            'How have you been? I was...',
+            '#',
+        ],
+        [
+            'Sarah Bullock',
+            '1/28/2022',
+            '../assets/img/user5-128x128.jpg',
+            'I will be waiting for...',
+            '#link_to_profile',
+        ],
+    ],
+]);
+?>
+
+<!-- you can manually put html messages here -->
+<!-- you can manually put html contacts here -->
+
+<?php DirectChatWidget::end(); ?>
+```
+
+### Rendered DirectChat
+
+![Rendered DirectChat](https://code-notes.ru/directchat_example1.png "Rendered DirectChat")
+
+### Rendered DirectChat (Contact list)
+
+![Rendered DirectChat (Contact list)](https://code-notes.ru/directchat_example2.png "Rendered DirectChat (Contact list)")
