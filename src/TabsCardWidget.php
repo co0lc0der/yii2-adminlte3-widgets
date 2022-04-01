@@ -101,7 +101,7 @@ class TabsCardWidget extends \yii\base\Widget
 	/**
 	 * @return string
 	 */
-	private function getCardHeader(): string
+	protected function getCardHeader(): string
 	{
 		$html = Html::beginTag('div', ['class' => $this->getCardHeaderClass()]);
 		$html .= $this->getCardTitle();
@@ -114,7 +114,7 @@ class TabsCardWidget extends \yii\base\Widget
 	/**
 	 * @return string
 	 */
-	private function getCardTabs(): string
+	protected function getCardTabs(): string
 	{
 		$html = '';
 
@@ -132,7 +132,7 @@ class TabsCardWidget extends \yii\base\Widget
 	/**
 	 * @return string
 	 */
-	private function getCardTitle(): string
+	protected function getCardTitle(): string
 	{
 		$html = '';
 
@@ -147,7 +147,7 @@ class TabsCardWidget extends \yii\base\Widget
 	/**
 	 * @return string
 	 */
-	private function getCardBody(): string
+	protected function getCardBody(): string
 	{
 		$html = Html::beginTag('div', ['class' => 'tab-content']);
 
@@ -164,7 +164,7 @@ class TabsCardWidget extends \yii\base\Widget
 	/**
 	 * @return string
 	 */
-	private function getCardFooter(): string
+	protected function getCardFooter(): string
 	{
 		return (!empty($this->footer)) ? Html::tag('div', $this->footer, ['class' => $this->getCardFooterClass()]) : '';
 	}
@@ -172,7 +172,7 @@ class TabsCardWidget extends \yii\base\Widget
 	/**
 	 * @return string
 	 */
-	private function getCardClass(): string
+	protected function getCardClass(): string
 	{
 		$class = "card";
 
@@ -188,7 +188,7 @@ class TabsCardWidget extends \yii\base\Widget
 	/**
 	 * @return string
 	 */
-	private function getCardHeaderClass(): string
+	protected function getCardHeaderClass(): string
 	{
 		$class = 'card-header';
 
@@ -202,7 +202,7 @@ class TabsCardWidget extends \yii\base\Widget
 	/**
 	 * @return string
 	 */
-	private function getCardBodyClass(): string
+	protected function getCardBodyClass(): string
 	{
 		return 'card-body';
 	}
@@ -210,7 +210,7 @@ class TabsCardWidget extends \yii\base\Widget
 	/**
 	 * @return string
 	 */
-	private function getCardFooterClass(): string
+	protected function getCardFooterClass(): string
 	{
 		return 'card-footer';
 	}

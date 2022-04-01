@@ -64,6 +64,11 @@ class ProfileCardWidget extends \yii\base\Widget
 	public array $rows = [];
 
 	/**
+	 * @var string
+	 */
+	protected string $content = '';
+
+	/**
 	 * @return void
 	 */
 	public function init()
@@ -78,10 +83,10 @@ class ProfileCardWidget extends \yii\base\Widget
 	 */
 	public function run(): string
 	{
-		$content = ob_get_clean();
+		$this->content = ob_get_clean();
 		$html = Html::beginTag('div', ['class' => $this->getCardClass()]);
 
-		$html .= $this->getCardBody($content);
+		$html .= $this->getCardBody();
 		$html .= $this->getCardFooter();
 
 		$html .= Html::endTag('div'); // the end of a card
@@ -90,17 +95,16 @@ class ProfileCardWidget extends \yii\base\Widget
 	}
 
 	/**
-	 * @param string $content
 	 * @return string
 	 */
-	private function getCardBody(string $content = ''): string
+	protected function getCardBody(): string
 	{
 		$html = $this->getUserImage();
 		$html .= (!empty($this->name)) ? Html::tag('h3', Html::encode($this->name), ['class' => 'profile-username text-center']) : '';
 		$html .= (!empty($this->position)) ? Html::tag('p', Html::encode($this->position), ['class' => 'text-muted text-center']) : '';
 		$html .= (!empty($this->rows)) ? $this->getCardRows() : '';
 
-		$html .= $content;
+		$html .= $this->content;
 
 		return Html::tag('div', $html, ['class' => $this->getCardBodyClass()]);
 	}
@@ -108,7 +112,7 @@ class ProfileCardWidget extends \yii\base\Widget
 	/**
 	 * @return string
 	 */
-	private function getCardFooter(): string
+	protected function getCardFooter(): string
 	{
 		return (!empty($this->footer)) ? Html::tag('div', $this->footer, ['class' => $this->getCardFooterClass()]) : '';
 	}
@@ -116,7 +120,7 @@ class ProfileCardWidget extends \yii\base\Widget
 	/**
 	 * @return string
 	 */
-	private function getUserImage(): string
+	protected function getUserImage(): string
 	{
 		if (empty($this->image)) return '';
 
@@ -128,7 +132,7 @@ class ProfileCardWidget extends \yii\base\Widget
 	/**
 	 * @return string
 	 */
-	private function getCardRows(): string
+	protected function getCardRows(): string
 	{
 		$html = '';
 
@@ -144,7 +148,7 @@ class ProfileCardWidget extends \yii\base\Widget
 	/**
 	 * @return string
 	 */
-	private function getCardClass(): string
+	protected function getCardClass(): string
 	{
 		$class = "card";
 
@@ -157,7 +161,7 @@ class ProfileCardWidget extends \yii\base\Widget
 	/**
 	 * @return string
 	 */
-	private function getCardBodyClass(): string
+	protected function getCardBodyClass(): string
 	{
 		return 'card-body box-profile';
 	}
@@ -165,7 +169,7 @@ class ProfileCardWidget extends \yii\base\Widget
 	/**
 	 * @return string
 	 */
-	private function getCardFooterClass(): string
+	protected function getCardFooterClass(): string
 	{
 		return 'card-footer';
 	}

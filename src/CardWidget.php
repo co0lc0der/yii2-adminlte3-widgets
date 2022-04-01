@@ -66,6 +66,11 @@ class CardWidget extends \yii\base\Widget
 	 */
 	public string $shadow = '';
 
+	/**
+	 * @var string
+	 */
+	protected string $content = '';
+
 	use CardToolsSupportTrait;
 
 	/**
@@ -85,12 +90,12 @@ class CardWidget extends \yii\base\Widget
 	 */
 	public function run(): string
 	{
+		$this->content = ob_get_clean();
 		$this->registerJs();
-		$content = ob_get_clean();
-		$html = Html::beginTag('div', ['class' => $this->getCardClass(), 'data-widget' => 'card-widget']);
+		$html = Html::beginTag('div', ['class' => $this->getCardClass()]);
 
 		$html .= $this->getCardHeader();
-		$html .= $this->getCardBody($content);
+		$html .= $this->getCardBody();
 		$html .= $this->getCardFooter();
 
 		if ($this->ajaxLoad) {
@@ -106,7 +111,7 @@ class CardWidget extends \yii\base\Widget
 	/**
 	 * @return string
 	 */
-	private function getCardHeader(): string
+	protected function getCardHeader(): string
 	{
 		$html = Html::beginTag('div', ['class' => $this->getCardHeaderClass()]);
 		$html .= $this->getCardTitle();
@@ -119,24 +124,23 @@ class CardWidget extends \yii\base\Widget
 	/**
 	 * @return string
 	 */
-	private function getCardTitle(): string
+	protected function getCardTitle(): string
 	{
 		return (!empty($this->title)) ? Html::tag('h3', Html::encode($this->title), ['class' => 'card-title']) : '';
 	}
 
 	/**
-	 * @param string $content
 	 * @return string
 	 */
-	private function getCardBody(string $content = ''): string
+	protected function getCardBody(): string
 	{
-		return (!empty($content)) ? Html::tag('div', $content, ['class' => $this->getCardBodyClass()]) : '';
+		return (!empty($this->content)) ? Html::tag('div', $this->content, ['class' => $this->getCardBodyClass()]) : '';
 	}
 
 	/**
 	 * @return string
 	 */
-	private function getCardFooter(): string
+	protected function getCardFooter(): string
 	{
 		return (!empty($this->footer)) ? Html::tag('div', $this->footer, ['class' => $this->getCardFooterClass()]) : '';
 	}
@@ -144,7 +148,7 @@ class CardWidget extends \yii\base\Widget
 	/**
 	 * @return string
 	 */
-	private function getCardClass(): string
+	protected function getCardClass(): string
 	{
 		$class = "card";
 
@@ -161,7 +165,7 @@ class CardWidget extends \yii\base\Widget
 	/**
 	 * @return string
 	 */
-	private function getCardHeaderClass(): string
+	protected function getCardHeaderClass(): string
 	{
 		return 'card-header';
 	}
@@ -169,7 +173,7 @@ class CardWidget extends \yii\base\Widget
 	/**
 	 * @return string
 	 */
-	private function getCardBodyClass(): string
+	protected function getCardBodyClass(): string
 	{
 		return 'card-body';
 	}
@@ -177,7 +181,7 @@ class CardWidget extends \yii\base\Widget
 	/**
 	 * @return string
 	 */
-	private function getCardFooterClass(): string
+	protected function getCardFooterClass(): string
 	{
 		return 'card-footer';
 	}
@@ -185,17 +189,17 @@ class CardWidget extends \yii\base\Widget
 	/**
 	 * @return void
 	 */
-	private function registerJs(): void
+	protected function registerJs(): void
 	{
 		if ($this->ajaxLoad) {
 			$this->view->registerJs("
-           $.each($('[data-ajax-load-url]'), function(i, el) {
-              let url = $(el).attr('data-ajax-load-url');
-              $(el).siblings('.card-body').load(url, function() {
-                $(el).remove();
-              });
-           });
-        ", View::POS_READY, 'ajaxLoad');
+					$.each($('[data-ajax-load-url]'), function(i, el) {
+						let url = $(el).attr('data-ajax-load-url');
+						$(el).siblings('.card-body').load(url, function() {
+							$(el).remove();
+						});
+					});
+				", View::POS_READY, 'ajaxLoad');
 		}
 	}
 }

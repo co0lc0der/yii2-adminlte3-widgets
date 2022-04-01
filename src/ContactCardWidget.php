@@ -110,7 +110,7 @@ class ContactCardWidget extends \yii\base\Widget
 	/**
 	 * @return string
 	 */
-	private function getCardHeader(): string
+	protected function getCardHeader(): string
 	{
 		$html = Html::beginTag('div', ['class' => $this->getCardHeaderClass()]);
 		$html .= $this->getCardTitle();
@@ -123,7 +123,7 @@ class ContactCardWidget extends \yii\base\Widget
 	/**
 	 * @return string
 	 */
-	private function getCardTitle(): string
+	protected function getCardTitle(): string
 	{
 		return (!empty($this->position)) ? Html::encode($this->position) : '';
 	}
@@ -132,7 +132,7 @@ class ContactCardWidget extends \yii\base\Widget
 	 * @param string $content
 	 * @return string
 	 */
-	private function getCardBody(string $content = ''): string
+	protected function getCardBody(string $content = ''): string
 	{
 		$inner = Html::tag('b', Html::encode($this->name));
 		$html = (!empty($this->name)) ? Html::tag('h2', $inner, ['class' => 'lead']) : '';
@@ -150,7 +150,7 @@ class ContactCardWidget extends \yii\base\Widget
 	/**
 	 * @return string
 	 */
-	private function getCardFooter(): string
+	protected function getCardFooter(): string
 	{
 		if (empty($this->footer)) return '';
 
@@ -170,7 +170,7 @@ class ContactCardWidget extends \yii\base\Widget
 	/**
 	 * @return string
 	 */
-	private function getUserImage(): string
+	protected function getUserImage(): string
 	{
 		if (empty($this->image)) return '';
 
@@ -182,7 +182,7 @@ class ContactCardWidget extends \yii\base\Widget
 	/**
 	 * @return string
 	 */
-	private function getUserAbout(): string
+	protected function getUserAbout(): string
 	{
 		if (empty($this->about)) return '';
 
@@ -200,7 +200,7 @@ class ContactCardWidget extends \yii\base\Widget
 	/**
 	 * @return string
 	 */
-	private function getUserInfo(): string
+	protected function getUserInfo(): string
 	{
 		$html = '';
 
@@ -222,7 +222,7 @@ class ContactCardWidget extends \yii\base\Widget
 	/**
 	 * @return string
 	 */
-	private function getCardClass(): string
+	protected function getCardClass(): string
 	{
 		$class = 'card d-flex flex-fill';
 
@@ -237,7 +237,7 @@ class ContactCardWidget extends \yii\base\Widget
 	/**
 	 * @return string
 	 */
-	private function getCardHeaderClass(): string
+	protected function getCardHeaderClass(): string
 	{
 		return 'card-header text-muted border-bottom-0';
 	}
@@ -245,7 +245,7 @@ class ContactCardWidget extends \yii\base\Widget
 	/**
 	 * @return string
 	 */
-	private function getCardBodyClass(): string
+	protected function getCardBodyClass(): string
 	{
 		return 'card-body pt-0';
 	}
@@ -253,7 +253,7 @@ class ContactCardWidget extends \yii\base\Widget
 	/**
 	 * @return string
 	 */
-	private function getCardFooterClass(): string
+	protected function getCardFooterClass(): string
 	{
 		return 'card-footer';
 	}
