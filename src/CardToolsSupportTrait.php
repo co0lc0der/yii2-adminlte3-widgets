@@ -50,11 +50,11 @@ trait CardToolsSupportTrait
 		if (is_array($this->tools)) {
 			foreach ($this->tools as $item) {
 				if ($item[0] == 'button') {
-					$html .= Html::button($item[1], array_merge(['class' => 'btn btn-tool'], $item[2]));
+					$html .= Html::button($item[1], array_merge(['class' => 'btn btn-tool', 'data-toggle' => 'tooltip'], $item[2]));
 				} else if ($item[0] == 'label') {
-					$html .= Html::tag('span', $item[1], $item[2]);
+					$html .= Html::tag('span', $item[1], array_merge(['class' => 'badge badge-light', 'data-toggle' => 'tooltip'], $item[2]));
 				} else {
-					$html .= Html::a($item[1], $item[2], array_merge(['class' => 'btn btn-tool'], $item[3]));
+					$html .= Html::a($item[1], $item[2], array_merge(['class' => 'btn btn-tool', 'data-toggle' => 'tooltip'], $item[3]));
 				}
 			}
 		}
@@ -68,39 +68,15 @@ trait CardToolsSupportTrait
 	protected function addStandardTools(): void
 	{
 		if ($this->collapse) {
-			$this->items[] = [
-				'button',
-				($this->hide) ? '<i class="fas fa-plus"></i>' : '<i class="fas fa-minus"></i>',
-				[
-					'class' => 'btn btn-tool',
-					'data-card-widget' => 'collapse',
-					'title' => 'Collapse/Restore',
-				]
-			];
+			$this->tools[] = CardToolsHelper::collapseButton($this->hide);
 		}
 
 		if ($this->expand) {
-			$this->items[] = [
-				'button',
-				'<i class="fas fa-expand"></i>',
-				[
-					'class' => 'btn btn-tool',
-					'data-card-widget' => 'maximize',
-					'title' => 'Maximize',
-				]
-			];
+			$this->tools[] = CardToolsHelper::expandButton();
 		}
 
 		if ($this->close) {
-			$this->items[] = [
-				'button',
-				'<i class="fas fa-times"></i>',
-				[
-					'class' => 'btn btn-tool',
-					'data-card-widget' => 'remove',
-					'title' => 'Close',
-				]
-			];
+			$this->tools[] = CardToolsHelper::closeButton();
 		}
 	}
 }
