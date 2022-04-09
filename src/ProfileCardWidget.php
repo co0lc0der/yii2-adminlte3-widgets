@@ -7,7 +7,7 @@ use yii\bootstrap\Html;
  * Class ProfileCardWidget
  * @package co0lc0der\Lte3Widgets
  */
-class ProfileCardWidget extends \yii\base\Widget
+class ProfileCardWidget extends CardWidget
 {
 	/**
 	 * user name
@@ -28,25 +28,6 @@ class ProfileCardWidget extends \yii\base\Widget
 	public string $position = '';
 
 	/**
-	 * color of a card header (Bootstrap 4 colors. 'success', 'danger' еtс.)
-	 * @var string
-	 */
-	public string $color = '';
-
-	/**
-	 * content of card footer
-	 * @var string
-	 */
-	public string $footer = '';
-
-	/**
-	 * type of card shadow
-	 * ('shadow-none', 'shadow-sm', 'shadow', 'shadow-lg')
-	 * @var string
-	 */
-	public string $shadow = '';
-
-	/**
 	 * list of rows
 	 * format: title => [count, URL]
 	 * 'Followers' => [
@@ -62,21 +43,6 @@ class ProfileCardWidget extends \yii\base\Widget
 	 * @var array
 	 */
 	public array $rows = [];
-
-	/**
-	 * @var string
-	 */
-	protected string $content = '';
-
-	/**
-	 * @return void
-	 */
-	public function init()
-	{
-		parent::init();
-
-		ob_start();
-	}
 
 	/**
 	 * @return string
@@ -112,14 +78,6 @@ class ProfileCardWidget extends \yii\base\Widget
 	/**
 	 * @return string
 	 */
-	protected function getCardFooter(): string
-	{
-		return (!empty($this->footer)) ? Html::tag('div', $this->footer, ['class' => $this->getCardFooterClass()]) : '';
-	}
-
-	/**
-	 * @return string
-	 */
 	protected function getUserImage(): string
 	{
 		if (empty($this->image)) return '';
@@ -148,29 +106,9 @@ class ProfileCardWidget extends \yii\base\Widget
 	/**
 	 * @return string
 	 */
-	protected function getCardClass(): string
-	{
-		$class = "card";
-
-		$class .= ($this->color) ? " card-{$this->color} card-outline" : '';
-		$class .= ($this->shadow) ? " {$this->shadow}" : '';
-
-		return $class;
-	}
-
-	/**
-	 * @return string
-	 */
 	protected function getCardBodyClass(): string
 	{
-		return 'card-body box-profile';
-	}
-
-	/**
-	 * @return string
-	 */
-	protected function getCardFooterClass(): string
-	{
-		return 'card-footer';
+		$this->cssClasses[3] = ' box-profile';
+		return parent::getCardBodyClass();
 	}
 }
