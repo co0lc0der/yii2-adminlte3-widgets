@@ -220,7 +220,7 @@ This class is extended of CardWidget therefore it has the same properties but it
 
 ## ContactCardWidget
 
-To use this widget you should use `echo` and `widget()` method.
+To use this widget you should use `echo` and `widget()` method. It use [CardToolsSupport trait](#cardtoolssupporttrait).
 
 ### Public properties, its types and default values
 
@@ -235,11 +235,6 @@ To use this widget you should use `echo` and `widget()` method.
 - `bool $outline = false` - makes an outlined card
 - `$footer = ''` - content of card footer, it can be some string or an array of buttons
 - `string $shadow = ''` - type of card shadow ('shadow-none', 'shadow-sm', 'shadow', 'shadow-lg')
-- `bool $collapse = true` - show / hide collapse button inside card header
-- `bool $hide = false` - show / hide a collapsed card after initialization
-- `bool $expand = false` - show / hide maximize button inside card header
-- `bool $close = false` - show / hide close button inside card header
-- `array $tools = []` - list of header custom tools (labels, buttons, links)
 
 ### Example
 
