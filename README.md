@@ -6,6 +6,8 @@
 
 AdminLTE 3 widgets for Yii2. At present time the extension includes
 
+* [CardToolsSupportTrait](#cardtoolssupporttrait)
+* [CardToolsHelper](#cardtoolshelper)
 * [CardWidget](#cardwidget)
 * [TabsCardWidget](#tabscardwidget)
 * [ProfileCardWidget](#profilecardwidget)
@@ -32,7 +34,23 @@ or add
 
 to the require section of your `composer.json` file.
 
+## CardToolsSupportTrait
+
+### Public properties, its types and default values
+
+- `bool $collapse = true` - show / hide collapse button inside card header
+- `bool $hide = false` - show / hide a collapsed card after initialization
+- `bool $expand = false` - show / hide maximize button inside card header
+- `bool $close = false` - show / hide close button inside card header
+- `array $tools = []` - list of header tools (standard and custom labels, buttons, links)
+
+## CardToolsHelper
+
+It helps to make buttons for a card header. See the example for CardWidget below.
+
 ## CardWidget
+
+This is the basic class. It use [CardToolsSupport trait](#cardtoolssupporttrait).
 
 ### Public properties, its types and default values
 
@@ -42,14 +60,20 @@ to the require section of your `composer.json` file.
 - `bool $background = false` - makes a colored card, uses $color property (Bootstrap 4 colors)
 - `bool $gradient = false` - makes a gradient card, uses $color property (Bootstrap 4 colors)
 - `string $footer = ''` - content of card footer
-- `bool $collapse = true` - show / hide collapse button inside card header
-- `bool $hide = false` - show / hide a collapsed card after initialization
-- `bool $expand = false` - show / hide maximize button inside card header
-- `bool $close = false` - show / hide close button inside card header
 - `string $ajaxLoad = ''` - URL for loading data, if it is not empty it shows a spinner before data loaded
 - `string $ajaxOverlay = 'overlay'` - type of loading overlay ('overlay', 'dark')
 - `string $shadow = ''` - type of card shadow ('shadow-none', 'shadow-sm', 'shadow', 'shadow-lg')
-- `array $tools = []` - list of header custom tools (labels, buttons, links)
+- `array $cssClasses = []` - additional CSS classes (use space character as the first character). these class will add to the basic class. format:
+
+```php
+[
+    0 => ' classes-for-card-wrapper',
+	1 => ' classes-for-card-header',
+	2 => ' classes-for-card-title',
+	3 => ' classes-for-card-body',
+	4 => ' classes-for-card-footer',
+]
+```
 
 ### Example
 
@@ -63,29 +87,34 @@ to the require section of your `composer.json` file.
     'shadow' => 'shadow-sm',    // use small shadow
     'close' => true,            // show close button in card header
     'tools' => [                // array with config to add custom labels, buttons or links
-        [
+        CardToolsHelper::label('new', [
+            'class' => 'badge badge-primary',
+            'title' => 'New',
+        ]),
+        // OR you can use classic array
+        /*[
             'label',
             'new',
             [
                 'class' => 'badge badge-primary',
-                'data-toggle' => 'tooltip',
                 'title' => 'New',
             ],
-        ],
-        [
+        ],*/
+        CardToolsHelper::a(['update', 'id' => 1], 'pencil-alt', '', ['title' => 'Update it']),
+        // OR you can use classic array
+        /*[
             'link',
-            '<i class="fas fa-pencil-alt" aria-hidden="true"></i>',
+            '<i class="fas fa-pencil-alt"></i>',
             ['update', 'id' => 1],
             ['title' => 'Update it'],
-        ],
-        [
+        ],*/
+        CardToolsHelper::button('cog', '', ['title' => 'some tooltip']),
+        // OR you can use classic array
+        /*[
             'button',
             '<i class="fas fa-cog"></i>',
-            [
-                'class' => 'btn btn-tool',
-                'title' => 'some tooltip',
-            ],
-        ]
+            ['title' => 'some tooltip'],
+        ],*/
     ],
 ]);
 ?>
@@ -147,14 +176,13 @@ to the require section of your `composer.json` file.
 
 ## ProfileCardWidget
 
-### Public properties, its types and default values
+This class is extended of CardWidget therefore it has the same properties but it has its own properties listed below.
+
+### Public properties (excluding CardWidget properties), its types and default values
 
 - `string $name` - user name
 - `string $image = ''` - user image
 - `string $position = ''` - user role or position
-- `string $color = ''` - color of a card header (Bootstrap 4 colors. 'success', 'danger' еtс.)
-- `string $footer = ''` - content of card footer
-- `string $shadow = ''` - type of card shadow ('shadow-none', 'shadow-sm', 'shadow', 'shadow-lg')
 - `array $rows = []` - list of rows (see an example below)
 
 ### Example
@@ -165,6 +193,7 @@ to the require section of your `composer.json` file.
     'position' => 'Software Engineer',
     'image' => '../avatars/user2-160x160.jpg',
     'color' => 'info',
+    'outline' => true,
     'rows' => [
         'Followers' => [
             '1,521',
@@ -190,6 +219,8 @@ to the require section of your `composer.json` file.
 ![Rendered ProfileCard](https://code-notes.ru/profilecard_example.png "Rendered ProfileCard")
 
 ## ContactCardWidget
+
+To use this widget you should use `echo` and `widget()` method.
 
 ### Public properties, its types and default values
 
@@ -276,14 +307,19 @@ This class is extended of CardWidget therefore it has the same properties but it
     'sendFormPlaceholder' => 'Type your message here ...',
     'sendFormButtonTitle' => '<i class="fas fa-paper-plane"></i>',
     'tools' => [
-        [
+        CardToolsHelper::label('3', [
+            'class' => 'badge badge-dark',
+            'title' => '3 new messages',
+        ]),
+        // OR you can use classic array
+        /*[
             'label',
             '3',
             [
                 'class' => 'badge badge-dark',
                 'title' => '3 new messages',
             ],
-        ],
+        ],*/
     ],
     'messages' => [
         [
@@ -336,8 +372,8 @@ This class is extended of CardWidget therefore it has the same properties but it
 ]);
 ?>
 
-<!-- you can manually put html messages here -->
-<!-- you can manually put html contacts here -->
+<!-- you can manually put HTML messages here -->
+<!-- you can manually put HTML contacts here -->
 
 <?php DirectChatWidget::end(); ?>
 ```
