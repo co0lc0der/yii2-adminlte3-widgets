@@ -95,14 +95,7 @@ class DirectChatWidget extends CardWidget
 	public function init()
 	{
 		if (!empty($this->contacts)) {
-			$this->tools[] = [
-				'button',
-				'<i class="fas fa-comments"></i>',
-				[
-					'data-widget' => 'chat-pane-toggle',
-					'title' => 'Контакты',
-				]
-			];
+			$this->tools[] = CardToolsHelper::contactsButton();
 		}
 
 		parent::init();
