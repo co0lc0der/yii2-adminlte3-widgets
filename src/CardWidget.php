@@ -10,6 +10,8 @@ use yii\web\View;
  */
 class CardWidget extends \yii\base\Widget
 {
+	const OVERLAY_TYPES = ['overlay', 'dark'];
+
 	/**
 	 * title of a card
 	 * @var string
@@ -106,10 +108,7 @@ class CardWidget extends \yii\base\Widget
 		$html .= $this->getCardBody();
 		$html .= $this->getCardFooter();
 
-		if ($this->ajaxLoad) {
-			$overlay = ($this->ajaxOverlay == 'dark') ? 'overlay dark' : 'overlay';
-			$html .= ($this->ajaxLoad) ? Html::tag('div', '<i class="fas fa-2x fa-sync-alt fa-spin"></i>', ['class' => $overlay, 'data-ajax-load-url' => $this->ajaxLoad]) : '';
-		}
+		$html .= (!empty($this->ajaxLoad)) ? Html::tag('div', '<i class="fas fa-2x fa-sync-alt fa-spin"></i>', ['class' => $this->getOverlayClass(), 'data-ajax-load-url' => $this->ajaxLoad]) : '';
 
 		$html .= Html::endTag('div'); // the end of a card
 
@@ -215,6 +214,16 @@ class CardWidget extends \yii\base\Widget
 		$class .= $this->cssClasses[4] ?? '';
 
 		return $class;
+	}
+
+	/**
+	 * @return string
+	 */
+	protected function getOverlayClass(): string
+	{
+		if (empty($this->ajaxOverlay) || !in_array($this->ajaxOverlay, self::OVERLAY_TYPES)) return '';
+
+		return ($this->ajaxOverlay == 'dark') ? 'overlay dark' : 'overlay';
 	}
 
 	/**
