@@ -220,7 +220,7 @@ This class is extended of CardWidget therefore it has the same properties but it
 
 ## ContactCardWidget
 
-To use this widget you should use `echo` and `widget()` method. It use [CardToolsSupport trait](#cardtoolssupporttrait).
+You should use `echo` and `widget()` method. It uses [CardToolsSupport trait](#cardtoolssupporttrait).
 
 ### Public properties, its types and default values
 
