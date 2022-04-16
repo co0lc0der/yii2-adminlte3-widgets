@@ -108,7 +108,8 @@ class ProfileCardWidget extends CardWidget
 	 */
 	protected function getCardBodyClass(): string
 	{
-		$this->cssClasses[3] = ' box-profile';
+		if (isset($this->cssClasses[3])) $this->cssClasses[3] .= ' box-profile'; else $this->cssClasses[3] = ' box-profile';
+
 		return parent::getCardBodyClass();
 	}
 }

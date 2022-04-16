@@ -72,14 +72,8 @@ class ContactCardWidget extends \yii\base\Widget
 	 */
 	public $footer = '';
 
-	/**
-	 * type of card shadow
-	 * ('shadow-none', 'shadow-sm', 'shadow', 'shadow-lg')
-	 * @var string
-	 */
-	public string $shadow = '';
-
 	use CardToolsSupportTrait;
+	use ShadowSupportTrait;
 
 	/**
 	 * @return void
@@ -228,7 +222,7 @@ class ContactCardWidget extends \yii\base\Widget
 
 		$class .= ($this->color) ? " card-{$this->color}" : '';
 		$class .= ($this->outline && $this->color) ? ' card-outline' : '';
-		$class .= ($this->shadow) ? " {$this->shadow}" : '';
+		$class .= $this->getShadowClass();
 		$class .= ($this->hide) ? ' collapsed-card' : '';
 
 		return $class;

@@ -7,6 +7,7 @@
 AdminLTE 3 widgets for Yii2. At present time the extension includes
 
 * [CardToolsSupportTrait](#cardtoolssupporttrait)
+* [ShadowSupportTrait](#shadowsupporttrait)
 * [CardToolsHelper](#cardtoolshelper)
 * [CardWidget](#cardwidget)
 * [TabsCardWidget](#tabscardwidget)
@@ -36,6 +37,8 @@ to the require section of your `composer.json` file.
 
 ## CardToolsSupportTrait
 
+Adds support tool buttons (standard and custom tools) for a card header.
+
 ### Public properties, its types and default values
 
 - `bool $collapse = true` - show / hide collapse button inside card header
@@ -44,13 +47,21 @@ to the require section of your `composer.json` file.
 - `bool $close = false` - show / hide close button inside card header
 - `array $tools = []` - list of header tools (standard and custom labels, buttons, links)
 
+## ShadowSupportTrait
+
+Adds support a shadow for a card. You should call `getShadowClass()` in your overwritten `getCardBodyClass()` method if you use this trait.
+
+### Public properties, its types and default values
+
+- `string $shadow = ''` - type of card shadow ('shadow-none', 'shadow-sm', 'shadow', 'shadow-lg')
+
 ## CardToolsHelper
 
 It helps to make buttons for a card header. See the example for CardWidget below.
 
 ## CardWidget
 
-This is the basic class. It use [CardToolsSupport trait](#cardtoolssupporttrait).
+This is the basic class. It uses [CardToolsSupport](#cardtoolssupporttrait) and [ShadowSupport](#shadowsupporttrait) traits.
 
 ### Public properties, its types and default values
 
@@ -62,7 +73,6 @@ This is the basic class. It use [CardToolsSupport trait](#cardtoolssupporttrait)
 - `string $footer = ''` - content of card footer
 - `string $ajaxLoad = ''` - URL for loading data, if it is not empty it shows a spinner before data loaded
 - `string $ajaxOverlay = 'overlay'` - type of loading overlay ('overlay', 'dark')
-- `string $shadow = ''` - type of card shadow ('shadow-none', 'shadow-sm', 'shadow', 'shadow-lg')
 - `array $cssClasses = []` - additional CSS classes (use space character as the first character). these class will add to the basic class. format:
 
 ```php
@@ -75,7 +85,7 @@ This is the basic class. It use [CardToolsSupport trait](#cardtoolssupporttrait)
 ]
 ```
 
-### Example
+### Example 1
 
 ```php
 <?php CardWidget::begin([
@@ -116,8 +126,7 @@ This is the basic class. It use [CardToolsSupport trait](#cardtoolssupporttrait)
             ['title' => 'some tooltip'],
         ],*/
     ],
-]);
-?>
+]); ?>
 
 <?= 'some content'; ?>
 
@@ -128,7 +137,49 @@ This is the basic class. It use [CardToolsSupport trait](#cardtoolssupporttrait)
 
 ![Rendered card](https://code-notes.ru/card_example.png "Rendered card")
 
+### Example 2
+
+```php
+<?php CardWidget::begin([
+    'title' => 'Folders',
+    'cssClasses' => [3 => ' p-0'],
+]); ?>
+
+<ul class="nav nav-pills flex-column">
+    <li class="nav-item active">
+        <a href="#" class="nav-link">
+            <i class="fas fa-inbox"></i> Inbox
+            <span class="badge bg-primary float-right">12</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a href="#" class="nav-link">
+            <i class="far fa-envelope"></i> Sent
+        </a>
+    </li>
+    <li class="nav-item">
+        <a href="#" class="nav-link">
+            <i class="far fa-file-alt"></i> Drafts
+            <span class="badge bg-warning float-right">3</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a href="#" class="nav-link">
+            <i class="far fa-trash-alt"></i> Trash
+        </a>
+    </li>
+</ul>
+
+<?php CardWidget::end(); ?>
+```
+
+### Rendered card
+
+![Rendered card](https://code-notes.ru/card_example2.png "Rendered card")
+
 ## TabsCardWidget
+
+It uses [ShadowSupport trait](#shadowsupporttrait).
 
 ### Public properties, its types and default values
 
@@ -138,7 +189,6 @@ This is the basic class. It use [CardToolsSupport trait](#cardtoolssupporttrait)
 - `bool $background = false` - makes a colored card, uses $color property (Bootstrap 4 colors)
 - `bool $gradient = false` - makes a gradient card, uses $color property (Bootstrap 4 colors)
 - `string $footer = ''` - content of card footer
-- `string $shadow = ''` - type of card shadow ('shadow-none', 'shadow-sm', 'shadow', 'shadow-lg')
 - `array $tabs = []` - list of tabs (see an example below)
 
 ### Example
@@ -162,8 +212,7 @@ This is the basic class. It use [CardToolsSupport trait](#cardtoolssupporttrait)
                 For science, music, sport, etc, Europe uses the same vocabulary.',
         ]
     ]
-]);
-?>
+]); ?>
 ```
 
 ### Rendered TabsCard
@@ -206,8 +255,7 @@ This class is extended of CardWidget therefore it has the same properties but it
             'https://example.com'
         ],
     ],
-]);
-?>
+]); ?>
 
 <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
 
@@ -220,21 +268,20 @@ This class is extended of CardWidget therefore it has the same properties but it
 
 ## ContactCardWidget
 
-You should use `echo` and `widget()` method. It uses [CardToolsSupport trait](#cardtoolssupporttrait).
+You should use `echo` and `widget()` method. It uses [CardToolsSupport](#cardtoolssupporttrait) and [ShadowSupport](#shadowsupporttrait) traits.
 
 ### Public properties, its types and default values
 
 - `string $name` - user name
 - `string $image = ''` - user image
 - `string $position = ''` - user role or position (title of a card)
-- `$about = ''` - about user. format: array ['Web Designer', 'UX'] or string
+- `array|string $about = ''` - about user. format: array ['Web Designer', 'UX'] or string
 - `string $aboutTitle = 'About: '` - about title
 - `string $aboutSeparator = ' / '` - separator of about user if it is an array
 - `array $info = []` - list of rows. format: FontAwesome icon => text
 - `string $color = ''` - color of a card header (Bootstrap 4 colors. 'success', 'danger' еtс.)
 - `bool $outline = false` - makes an outlined card
-- `$footer = ''` - content of card footer, it can be some string or an array of buttons
-- `string $shadow = ''` - type of card shadow ('shadow-none', 'shadow-sm', 'shadow', 'shadow-lg')
+- `string|array $footer = ''` - content of card footer, it can be some string or an array of buttons
 
 ### Example
 
@@ -267,8 +314,7 @@ You should use `echo` and `widget()` method. It uses [CardToolsSupport trait](#c
             [],
         ],
     ],
-]);
-?>
+]); ?>
 ```
 
 ### Rendered ContactCard
@@ -364,14 +410,15 @@ This class is extended of CardWidget therefore it has the same properties but it
             '#link_to_profile',
         ],
     ],
-]);
-?>
+]); ?>
 
-<!-- you can manually put HTML messages here -->
-<!-- you can manually put HTML contacts here -->
+<!-- you can manually put HTML messages here* -->
+<!-- you can manually put HTML contacts here* -->
 
 <?php DirectChatWidget::end(); ?>
 ```
+
+\* - leave empty $messages and/or $contacts properties and see [AdminLTE documentation](https://adminlte.io/docs/3.1/components/direct-chat.html) for examples.
 
 ### Rendered DirectChat
 

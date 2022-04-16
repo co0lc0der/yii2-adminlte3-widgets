@@ -89,6 +89,8 @@ class DirectChatWidget extends CardWidget
 	 */
 	public string $sendFormPlaceholder = 'Type Message ...';
 
+	use ShadowSupportTrait;
+
 	/**
 	 * @return void
 	 */
@@ -194,7 +196,7 @@ class DirectChatWidget extends CardWidget
 		$class .= ($this->outline && $this->color) ? ' card-outline' : '';
 		$class .= ($this->background && $this->color) ? " bg-{$this->color}" : '';
 		$class .= ($this->gradient && $this->color) ? " bg-gradient-{$this->color}" : '';
-		$class .= ($this->shadow) ? " {$this->shadow}" : '';
+		$class .= $this->getShadowClass();
 		$class .= ($this->hide) ? ' collapsed-card' : '';
 
 		return $class;

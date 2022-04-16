@@ -60,13 +60,6 @@ class CardWidget extends \yii\base\Widget
 	public string $ajaxOverlay = 'overlay';
 
 	/**
-	 * type of card shadow
-	 * ('shadow-none', 'shadow-sm', 'shadow', 'shadow-lg')
-	 * @var string
-	 */
-	public string $shadow = '';
-
-	/**
 	 * additional CSS classes
 	 * format: [
 	 *  0 => 'classes-for-card-wrapper',
@@ -86,6 +79,7 @@ class CardWidget extends \yii\base\Widget
 	protected string $content = '';
 
 	use CardToolsSupportTrait;
+	use ShadowSupportTrait;
 
 	/**
 	 * @return void
@@ -172,7 +166,7 @@ class CardWidget extends \yii\base\Widget
 		$class .= ($this->outline && $this->color) ? ' card-outline' : '';
 		$class .= ($this->background && $this->color) ? " bg-{$this->color}" : '';
 		$class .= ($this->gradient && $this->color) ? " bg-gradient-{$this->color}" : '';
-		$class .= ($this->shadow) ? " {$this->shadow}" : '';
+		$class .= $this->getShadowClass();
 		$class .= ($this->hide) ? ' collapsed-card' : '';
 		$class .= $this->cssClasses[0] ?? '';
 

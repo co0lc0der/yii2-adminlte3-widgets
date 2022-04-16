@@ -47,13 +47,6 @@ class TabsCardWidget extends \yii\base\Widget
 	public string $footer = '';
 
 	/**
-	 * type of card shadow
-	 * ('shadow-none', 'shadow-sm', 'shadow', 'shadow-lg')
-	 * @var string
-	 */
-	public string $shadow = '';
-
-	/**
 	 * list of tabs
 	 * [
 	 *  [
@@ -73,6 +66,8 @@ class TabsCardWidget extends \yii\base\Widget
 	 * @var array
 	 */
 	public array $tabs = [];
+
+	use ShadowSupportTrait;
 
 	/**
 	 * @return void
@@ -180,7 +175,7 @@ class TabsCardWidget extends \yii\base\Widget
 		$class .= ($this->outline && $this->color) ? ' card-outline' : '';
 		$class .= ($this->background && $this->color) ? " bg-{$this->color}" : '';
 		$class .= ($this->gradient && $this->color) ? " bg-gradient-{$this->color}" : '';
-		$class .= ($this->shadow) ? " {$this->shadow}" : '';
+		$class .= $this->getShadowClass();
 
 		return $class;
 	}
