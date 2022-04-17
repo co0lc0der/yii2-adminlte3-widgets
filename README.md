@@ -15,7 +15,7 @@ AdminLTE 3 widgets for Yii2. At present time the extension includes
 * [ContactCardWidget](#contactcardwidget)
 * [DirectChatWidget](#directchatwidget)
 
-**Based on [AdminLTE 3.1.0](https://github.com/ColorlibHQ/AdminLTE/releases/tag/v3.1.0)** More widgets, helpers and Gii will be added in the future.
+**Based on [AdminLTE 3.1.0](https://github.com/ColorlibHQ/AdminLTE/releases/tag/v3.1.0)**. More widgets, helpers and Gii will be added in the future.
 
 ## Installation
 
@@ -65,7 +65,7 @@ This is the basic class. It uses [CardToolsSupport](#cardtoolssupporttrait) and 
 
 ### Public properties, its types and default values
 
-- `string $title` - title of a card
+- `string $title = ''` - title of a card
 - `string $color = ''` - color of a card header (Bootstrap 4 colors. 'success', 'danger' еtс.)
 - `bool $outline = false` - makes an outlined card
 - `bool $background = false` - makes a colored card, uses $color property (Bootstrap 4 colors)
@@ -73,15 +73,15 @@ This is the basic class. It uses [CardToolsSupport](#cardtoolssupporttrait) and 
 - `string $footer = ''` - content of card footer
 - `string $ajaxLoad = ''` - URL for loading data, if it is not empty it shows a spinner before data loaded
 - `string $ajaxOverlay = 'overlay'` - type of loading overlay ('overlay', 'dark')
-- `array $cssClasses = []` - additional CSS classes (use space character as the first character). these class will add to the basic class. format:
+- `array $cssClasses = []` - additional CSS classes, these classes will be added to the basic class. format:
 
 ```php
 [
-    0 => ' classes-for-card-wrapper',
-	1 => ' classes-for-card-header',
-	2 => ' classes-for-card-title',
-	3 => ' classes-for-card-body',
-	4 => ' classes-for-card-footer',
+    0 => 'classes-for-card-wrapper',
+    1 => 'classes-for-card-header',
+    2 => 'classes-for-card-title',
+    3 => 'classes-for-card-body',
+    4 => 'classes-for-card-footer',
 ]
 ```
 
@@ -142,7 +142,7 @@ This is the basic class. It uses [CardToolsSupport](#cardtoolssupporttrait) and 
 ```php
 <?php CardWidget::begin([
     'title' => 'Folders',
-    'cssClasses' => [3 => ' p-0'],
+    'cssClasses' => [3 => 'p-0'],
 ]); ?>
 
 <ul class="nav nav-pills flex-column">
@@ -183,7 +183,7 @@ It uses [ShadowSupport trait](#shadowsupporttrait).
 
 ### Public properties, its types and default values
 
-- `string $title` - title of a card, if title is empty tabs will be placed on the left side of the card header
+- `string $title = ''` - title of a card, if title is empty tabs will be placed on the left side of the card header
 - `string $color = ''` - color of a card header (Bootstrap 4 colors. 'success', 'danger' еtс.)
 - `bool $outline = false` - makes an outlined card
 - `bool $background = false` - makes a colored card, uses $color property (Bootstrap 4 colors)

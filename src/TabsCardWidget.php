@@ -14,7 +14,7 @@ class TabsCardWidget extends \yii\base\Widget
 	 * if title is empty tabs will be placed on the left side of the card header
 	 * @var string
 	 */
-	public string $title;
+	public string $title = '';
 
 	/**
 	 * color of a card header (Bootstrap 4 colors. 'success', 'danger' еtс.)
@@ -186,10 +186,7 @@ class TabsCardWidget extends \yii\base\Widget
 	protected function getCardHeaderClass(): string
 	{
 		$class = 'card-header';
-
-		if (!empty($this->tabs)) {
-			$class .= ' d-flex p-0';
-		}
+		$class .= (!empty($this->tabs)) ? ' d-flex p-0' : '';
 
 		return $class;
 	}
