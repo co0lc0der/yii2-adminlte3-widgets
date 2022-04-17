@@ -167,7 +167,7 @@ class CardWidget extends \yii\base\Widget
 		$class .= ($this->gradient && $this->color) ? " bg-gradient-{$this->color}" : '';
 		$class .= $this->getShadowClass();
 		$class .= ($this->hide) ? ' collapsed-card' : '';
-		$class .= " {$this->cssClasses[0]}" ?? '';
+		$class .= (isset($this->cssClasses[0]) && !empty($this->cssClasses[0])) ? " {$this->cssClasses[0]}" : '';
 
 		return $class;
 	}
@@ -178,7 +178,7 @@ class CardWidget extends \yii\base\Widget
 	protected function getCardHeaderClass(): string
 	{
 		$class = 'card-header';
-		$class .= " {$this->cssClasses[1]}" ?? '';
+		$class .= (isset($this->cssClasses[1]) && !empty($this->cssClasses[1])) ? " {$this->cssClasses[1]}" : '';
 
 		return $class;
 	}
@@ -189,7 +189,7 @@ class CardWidget extends \yii\base\Widget
 	protected function getCardTitleClass(): string
 	{
 		$class = 'card-title';
-		$class .= " {$this->cssClasses[2]}" ?? '';
+		$class .= (isset($this->cssClasses[2]) && !empty($this->cssClasses[2])) ? " {$this->cssClasses[2]}" : '';
 
 		return $class;
 	}
@@ -200,7 +200,7 @@ class CardWidget extends \yii\base\Widget
 	protected function getCardBodyClass(): string
 	{
 		$class = 'card-body';
-		$class .= " {$this->cssClasses[3]}" ?? '';
+		$class .= (isset($this->cssClasses[3]) && !empty($this->cssClasses[3])) ? " {$this->cssClasses[3]}" : '';
 
 		return $class;
 	}
@@ -211,7 +211,7 @@ class CardWidget extends \yii\base\Widget
 	protected function getCardFooterClass(): string
 	{
 		$class = 'card-footer';
-		$class .= " {$this->cssClasses[4]}" ?? '';
+		$class .= (isset($this->cssClasses[4]) && !empty($this->cssClasses[4])) ? " {$this->cssClasses[4]}" : '';
 
 		return $class;
 	}
