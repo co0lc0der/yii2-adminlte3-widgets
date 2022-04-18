@@ -224,13 +224,14 @@ Support since v0.5.2. Use `['---']` to put a divider into header dropdown menu. 
     <p>
         Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
         Aenean commodo ligula eget dolor. Aenean massa.
+        Com sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
     </p>
 <?php CardWidget::end(); ?>
 ```
 
 ### Rendered card
 
-![Rendered card](https://code-notes.ru/card_example3.png "Rendered card")
+![Rendered card](https://code-notes.ru/dropdown_example.png "Rendered card")
 
 ## TabsCardWidget
 
