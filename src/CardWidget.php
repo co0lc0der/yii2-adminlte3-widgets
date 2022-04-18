@@ -151,7 +151,19 @@ class CardWidget extends \yii\base\Widget
 	 */
 	protected function getCardFooter(): string
 	{
-		return (!empty($this->footer)) ? Html::tag('div', $this->footer, ['class' => $this->getCardFooterClass()]) : '';
+		if (empty($this->footer)) return '';
+
+		if (is_array($this->footer)) {
+			$footer = '';
+			foreach ($this->footer as $item) {
+				$footer .= Html::a($item[0] ?? '', $item[2] ?? '#', array_merge(['class' => 'btn btn-sm ' . $item[1] ?? ''], $item[3] ?? [])) . ' ';
+			}
+			$html = Html::tag('div', $footer, ['class' => 'text-right']);
+		} else {
+			$html = $this->footer;
+		}
+
+		return Html::tag('div', $html, ['class' => $this->getCardFooterClass()]);
 	}
 
 	/**
