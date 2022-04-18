@@ -193,4 +193,19 @@ class CardToolsHelper
 			'title' => $title,
 		], $options));
 	}
+
+	/**
+	 * @param array $menu array of menu items
+	 * @param string $icon FontAwesone icon (without 'fa-' prefix)
+	 * @param bool $arrow show / hide a small arrow
+	 * @return array
+	 */
+	public static function submenu(array $menu, string $icon = 'ellipsis-v', bool $arrow = false): array
+	{
+		return [
+			$menu,
+			$icon,
+			$arrow,
+		];
+	}
 }

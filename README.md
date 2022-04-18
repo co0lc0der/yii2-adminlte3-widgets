@@ -1,6 +1,8 @@
 # AdminLTE 3 widgets for Yii2
 
 [![Latest Version](https://img.shields.io/github/release/co0lc0der/yii2-adminlte3-widgets?style=flat-square)](https://github.com/co0lc0der/yii2-adminlte3-widgets/release)
+[![Stable Version](https://poser.pugx.org/co0lc0der/yii2-adminlte3-widgets/v/stable?style=flat-square)](https://packagist.org/packages/co0lc0der/yii2-adminlte3-widgets)
+[![Unstable Version](https://poser.pugx.org/co0lc0der/yii2-adminlte3-widgets/v/unstable?style=flat-square)](https://packagist.org/packages/co0lc0der/yii2-adminlte3-widgets)
 [![Packagist Downloads](https://img.shields.io/packagist/dt/co0lc0der/yii2-adminlte3-widgets?color=yellow&style=flat-square)](https://packagist.org/packages/co0lc0der/yii2-adminlte3-widgets)
 [![GitHub license](https://img.shields.io/github/license/co0lc0der/yii2-adminlte3-widgets?style=flat-square)](https://github.com/co0lc0der/yii2-adminlte3-widgets/blob/main/LICENSE.md)
 
@@ -176,6 +178,52 @@ This is the basic class. It uses [CardToolsSupport](#cardtoolssupporttrait) and 
 ### Rendered card
 
 ![Rendered card](https://code-notes.ru/card_example2.png "Rendered card")
+
+### Dropdown button example
+
+Use `['---']` to put a divider. Array format:
+```php
+['URL', 'link content', ['options']],
+['---'],
+['#', 'item 3', ['title' => 'THIS IS ITEM #3!']],
+```
+
+```php
+<?php CardWidget::begin([
+    'title' => 'new Create Actions',
+    'color' => 'lime',
+    'collapse' => false,
+    'footer' => 'card footer',
+    'tools' => [
+        CardToolsHelper::submenu([
+            ['#1', 'item 1'],
+            ['#2', 'item 2'],
+            ['---'],
+            ['#3', 'item 3', ['title' => 'THIS IS ITEM #3!']],
+        ], 'bars', true),
+        // OR you can use classic array
+        /*[
+            [
+                ['#1', 'item 1'],
+                ['#2', 'item 2'],
+                ['---'],
+                ['#3', 'item 3', ['title' => 'THIS IS ITEM #3!']],
+            ],
+            'bars'
+            true
+        ],*/
+    ],
+]); ?>
+    <p>
+        Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+        Aenean commodo ligula eget dolor. Aenean massa.
+    </p>
+<?php CardWidget::end(); ?>
+```
+
+### Rendered card
+
+![Rendered card](https://code-notes.ru/card_example3.png "Rendered card")
 
 ## TabsCardWidget
 
