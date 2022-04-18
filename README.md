@@ -1,8 +1,6 @@
 # AdminLTE 3 widgets for Yii2
 
 [![Latest Version](https://img.shields.io/github/release/co0lc0der/yii2-adminlte3-widgets?style=flat-square)](https://github.com/co0lc0der/yii2-adminlte3-widgets/release)
-[![Stable Version](https://poser.pugx.org/co0lc0der/yii2-adminlte3-widgets/v/stable?style=flat-square)](https://packagist.org/packages/co0lc0der/yii2-adminlte3-widgets)
-[![Unstable Version](https://poser.pugx.org/co0lc0der/yii2-adminlte3-widgets/v/unstable?style=flat-square)](https://packagist.org/packages/co0lc0der/yii2-adminlte3-widgets)
 [![Packagist Downloads](https://img.shields.io/packagist/dt/co0lc0der/yii2-adminlte3-widgets?color=yellow&style=flat-square)](https://packagist.org/packages/co0lc0der/yii2-adminlte3-widgets)
 [![GitHub license](https://img.shields.io/github/license/co0lc0der/yii2-adminlte3-widgets?style=flat-square)](https://github.com/co0lc0der/yii2-adminlte3-widgets/blob/main/LICENSE.md)
 
