@@ -207,8 +207,8 @@ Use `['---']` to put a divider. Array format:
                 ['---'],
                 ['#3', 'item 3', ['title' => 'THIS IS ITEM #3!']],
             ],
-            'bars'
-            true
+            'bars',
+            true,
         ],*/
     ],
 ]); ?>
