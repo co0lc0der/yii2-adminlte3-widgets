@@ -44,9 +44,9 @@ class CardWidget extends \yii\base\Widget
 
 	/**
 	 * content of card footer
-	 * @var string
+	 * @var array|string
 	 */
-	public string $footer = '';
+	public $footer = '';
 
 	/**
 	 * URL for loading data

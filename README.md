@@ -70,7 +70,7 @@ This is the basic class. It uses [CardToolsSupport](#cardtoolssupporttrait) and 
 - `bool $outline = false` - makes an outlined card
 - `bool $background = false` - makes a colored card, uses $color property (Bootstrap 4 colors)
 - `bool $gradient = false` - makes a gradient card, uses $color property (Bootstrap 4 colors)
-- `string $footer = ''` - content of card footer
+- `array|string $footer = ''` - content of card footer
 - `string $ajaxLoad = ''` - URL for loading data, if it is not empty it shows a spinner before data loaded
 - `string $ajaxOverlay = 'overlay'` - type of loading overlay ('overlay', 'dark')
 - `array $cssClasses = []` - additional CSS classes, these classes will be added to the basic class. format:
@@ -177,9 +177,10 @@ This is the basic class. It uses [CardToolsSupport](#cardtoolssupporttrait) and 
 
 ![Rendered card](https://code-notes.ru/card_example2.png "Rendered card")
 
-### Dropdown button example
+### Header dropdown button and footer button example
 
-Use `['---']` to put a divider. Array format:
+Support since v0.5.2. Use `['---']` to put a divider into header dropdown menu. Array format:
+
 ```php
 ['URL', 'link content', ['options']],
 ['---'],
@@ -188,10 +189,18 @@ Use `['---']` to put a divider. Array format:
 
 ```php
 <?php CardWidget::begin([
-    'title' => 'new Create Actions',
+    'title' => 'Create Actions',
     'color' => 'lime',
+    'outline' => true,
     'collapse' => false,
-    'footer' => 'card footer',
+    'cssClasses' => [4 => 'p-1'],
+    'footer' => [
+        [
+            '<i class="fas fa-comments"></i>',
+            'bg-secondary',
+            ['update', 'id' => 1],
+        ],
+    ],
     'tools' => [
         CardToolsHelper::submenu([
             ['#1', 'item 1'],
