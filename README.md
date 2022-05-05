@@ -263,7 +263,7 @@ Pay attention! You should use `echo` and `widget()` method when you work with th
 - `bool $outline = false` - makes an outlined card
 - `bool $background = false` - makes a colored card, uses $color property (Bootstrap 4 colors or additional [colors of AdminLTE](https://adminlte.io/docs/3.1//layout.html))
 - `bool $gradient = false` - makes a gradient card, uses $color property
-- `string $footer = ''` - content of card footer
+- `array|string $footer = ''` - content of card footer
 - `array $tabs = []` - list of tabs (see an example below)
 
 ### Example
