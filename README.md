@@ -1,8 +1,6 @@
 # AdminLTE 3 widgets for Yii2
 
 [![Latest Version](https://img.shields.io/github/release/co0lc0der/yii2-adminlte3-widgets?style=flat-square)](https://github.com/co0lc0der/yii2-adminlte3-widgets/release)
-[![Stable Version](https://poser.pugx.org/co0lc0der/yii2-adminlte3-widgets/v/stable?style=flat-square)](https://packagist.org/packages/co0lc0der/yii2-adminlte3-widgets)
-[![Unstable Version](https://poser.pugx.org/co0lc0der/yii2-adminlte3-widgets/v/unstable?style=flat-square)](https://packagist.org/packages/co0lc0der/yii2-adminlte3-widgets)
 [![Packagist Downloads](https://img.shields.io/packagist/dt/co0lc0der/yii2-adminlte3-widgets?color=yellow&style=flat-square)](https://packagist.org/packages/co0lc0der/yii2-adminlte3-widgets)
 [![GitHub license](https://img.shields.io/github/license/co0lc0der/yii2-adminlte3-widgets?style=flat-square)](https://github.com/co0lc0der/yii2-adminlte3-widgets/blob/main/LICENSE.md)
 
@@ -22,6 +20,8 @@ AdminLTE 3 widgets for Yii2. At present time the extension includes
 * [UserCardWidget](#usercardwidget)
 
 **Based on [AdminLTE 3.1.0](https://github.com/ColorlibHQ/AdminLTE/releases/tag/v3.1.0)**. More widgets, helpers and Gii will be added in the future.
+
+This extension on [Yii framework webpage](https://www.yiiframework.com/extension/co0lc0der/yii2-adminlte3-widgets).
 
 ## Installation
 
@@ -263,7 +263,7 @@ Pay attention! You should use `echo` and `widget()` method when you work with th
 - `bool $outline = false` - makes an outlined card
 - `bool $background = false` - makes a colored card, uses $color property (Bootstrap 4 colors or additional [colors of AdminLTE](https://adminlte.io/docs/3.1//layout.html))
 - `bool $gradient = false` - makes a gradient card, uses $color property
-- `array|string $footer = ''` - content of card footer
+- `array|string $footer = ''` - content of card footer (array is supported since v0.6)
 - `array $tabs = []` - list of tabs (see an example below)
 
 ### Example
@@ -504,7 +504,7 @@ This class is extended of [CardWidget](#cardwidget) therefore it has the same pr
 
 ## SocialWidget
 
-Pay attention! You should use `echo` and `widget()` method when you work with the widget. It uses [ShadowSupport](#shadowsupporttrait), [ColorSupportTrait](#colorsupporttrait) and [CustomCssSupportTrait](#customcsssupporttrait) traits.
+Since v0.6. Pay attention! You should use `echo` and `widget()` method when you work with the widget. It uses [ShadowSupport](#shadowsupporttrait), [ColorSupportTrait](#colorsupporttrait) and [CustomCssSupportTrait](#customcsssupporttrait) traits.
 
 ### Public properties, its types and default values
 
@@ -554,7 +554,7 @@ Pay attention! You should use `echo` and `widget()` method when you work with th
 
 ## UserCardWidget
 
-Pay attention! You should use `echo` and `widget()` method when you work with the widget. It uses [ShadowSupport](#shadowsupporttrait), [ColorSupportTrait](#colorsupporttrait) and [CustomCssSupportTrait](#customcsssupporttrait) traits.
+Since v0.6. Pay attention! You should use `echo` and `widget()` method when you work with the widget. It uses [ShadowSupport](#shadowsupporttrait), [ColorSupportTrait](#colorsupporttrait) and [CustomCssSupportTrait](#customcsssupporttrait) traits.
 
 ### Public properties, its types and default values
 
