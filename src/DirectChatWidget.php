@@ -89,8 +89,6 @@ class DirectChatWidget extends CardWidget
 	 */
 	public string $sendFormPlaceholder = 'Type Message ...';
 
-	use ShadowSupportTrait;
-
 	/**
 	 * @return void
 	 */
@@ -174,7 +172,8 @@ class DirectChatWidget extends CardWidget
 	protected function getCardFooter(): string
 	{
 		$input = Html::input('text', 'message', '', ['class' => 'form-control', 'placeholder' => $this->sendFormPlaceholder ?? '']);
-		$button = Html::button($this->sendFormButtonTitle ?? 'Send', ['class' => "btn btn-{$this->chatColor}"]);
+		$buttonColor = ($this->isColor($this->chatColor)) ? "bg-{$this->chatColor}" : 'btn-secondary';
+		$button = Html::button($this->sendFormButtonTitle ?? 'Send', ['class' => "btn {$buttonColor}"]);
 		$span = Html::tag('span', $button, ['class' => 'input-group-append']);
 		$div = Html::tag('div', $input . $span, ['class' => 'input-group']);
 
@@ -186,19 +185,13 @@ class DirectChatWidget extends CardWidget
 	}
 
 	/**
+	 * @param string $baseClass
 	 * @return string
 	 */
-	protected function getCardClass(): string
+	protected function getCardClass(string $baseClass = 'card direct-chat'): string
 	{
-		$class = "card direct-chat direct-chat-{$this->chatColor}";
+		$baseClass .= ($this->isColor($this->chatColor)) ? " direct-chat-{$this->chatColor}" : '';
 
-		$class .= ($this->color && !$this->background && !$this->gradient) ? " card-{$this->color}" : '';
-		$class .= ($this->outline && $this->color) ? ' card-outline' : '';
-		$class .= ($this->background && $this->color) ? " bg-{$this->color}" : '';
-		$class .= ($this->gradient && $this->color) ? " bg-gradient-{$this->color}" : '';
-		$class .= $this->getShadowClass();
-		$class .= ($this->hide) ? ' collapsed-card' : '';
-
-		return $class;
+		return parent::getCardClass($baseClass);
 	}
 }
