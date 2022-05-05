@@ -1,8 +1,6 @@
 <?php
 namespace co0lc0der\Lte3Widgets;
 
-use yii\bootstrap\Html;
-
 /**
  * Trait ShadowSupportTrait
  * @package co0lc0der\Lte3Widgets
@@ -26,8 +24,6 @@ trait ShadowSupportTrait
 	 */
 	protected function getShadowClass(): string
 	{
-		if (empty($this->shadow) || !in_array($this->shadow, $this->shadowTypes)) return '';
-
-		return " {$this->shadow}";
+		return (!empty($this->shadow) && in_array($this->shadow, $this->shadowTypes)) ? " {$this->shadow}" : '';
 	}
 }
