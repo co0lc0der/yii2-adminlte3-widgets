@@ -10,7 +10,7 @@ use yii\bootstrap\Html;
 class ProfileCardWidget extends CardWidget
 {
 	/**
-	 * user name
+	 * username
 	 * @var string
 	 */
 	public string $name = '';
