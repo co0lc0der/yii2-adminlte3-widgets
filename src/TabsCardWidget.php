@@ -14,13 +14,7 @@ class TabsCardWidget extends \yii\base\Widget
 	 * if title is empty tabs will be placed on the left side of the card header
 	 * @var string
 	 */
-	public string $title = '';
-
-	/**
-	 * color of a card header (Bootstrap 4 colors. 'success', 'danger' еtс.)
-	 * @var string
-	 */
-	public string $color = '';
+	public string $title;
 
 	/**
 	 * makes an outlined card
@@ -42,9 +36,9 @@ class TabsCardWidget extends \yii\base\Widget
 
 	/**
 	 * content of card footer
-	 * @var string
+	 * @var string|array
 	 */
-	public string $footer = '';
+	public $footer = '';
 
 	/**
 	 * list of tabs
@@ -68,6 +62,8 @@ class TabsCardWidget extends \yii\base\Widget
 	public array $tabs = [];
 
 	use ShadowSupportTrait;
+	use CustomCssSupportTrait;
+	use ColorSupportTrait;
 
 	/**
 	 * @return void
@@ -82,7 +78,7 @@ class TabsCardWidget extends \yii\base\Widget
 	 */
 	public function run(): string
 	{
-		$html = Html::beginTag('div', ['class' => $this->getCardClass()/*, 'data-widget' => 'card-widget'*/]);
+		$html = Html::beginTag('div', ['class' => $this->getCardClass(), 'data-widget' => 'card-widget']);
 
 		$html .= $this->getCardHeader();
 		$html .= $this->getCardBody();
@@ -129,14 +125,7 @@ class TabsCardWidget extends \yii\base\Widget
 	 */
 	protected function getCardTitle(): string
 	{
-		$html = '';
-
-		if (!empty($this->title)) {
-			$class = (!empty($this->tabs)) ? 'card-title p-3' : 'card-title';
-			$html = Html::tag('h3', Html::encode($this->title), ['class' => $class]);
-		}
-
-		return $html;
+		return (!empty($this->title)) ? Html::tag('h3', Html::encode($this->title), ['class' => $this->getCardTitleClass()]) : '';
 	}
 
 	/**
@@ -161,7 +150,19 @@ class TabsCardWidget extends \yii\base\Widget
 	 */
 	protected function getCardFooter(): string
 	{
-		return (!empty($this->footer)) ? Html::tag('div', $this->footer, ['class' => $this->getCardFooterClass()]) : '';
+		if (empty($this->footer)) return '';
+
+		if (is_array($this->footer)) {
+			$footer = '';
+			foreach ($this->footer as $item) {
+				$footer .= Html::a($item[0] ?? '', $item[2] ?? '#', array_merge(['class' => 'btn btn-sm ' . $item[1] ?? ''], $item[3] ?? [])) . ' ';
+			}
+			$html = Html::tag('div', $footer, ['class' => 'text-right']);
+		} else {
+			$html = $this->footer; //Html::encode($this->footer)?
+		}
+
+		return Html::tag('div', $html, ['class' => $this->getCardFooterClass()]);
 	}
 
 	/**
@@ -171,13 +172,15 @@ class TabsCardWidget extends \yii\base\Widget
 	{
 		$class = "card";
 
-		$class .= ($this->color && !$this->background && !$this->gradient) ? " card-{$this->color}" : '';
-		$class .= ($this->outline && $this->color) ? ' card-outline' : '';
-		$class .= ($this->background && $this->color) ? " bg-{$this->color}" : '';
-		$class .= ($this->gradient && $this->color) ? " bg-gradient-{$this->color}" : '';
+		if ($this->isColor($this->color)) {
+			$class .= (!$this->background && !$this->gradient) ? " card-{$this->color}" : '';
+			$class .= ($this->outline) ? ' card-outline' : '';
+			$class .= ($this->background) ? " bg-{$this->color}" : '';
+			$class .= ($this->gradient) ? " bg-gradient-{$this->color}" : '';
+		}
 		$class .= $this->getShadowClass();
 
-		return $class;
+		return $class . $this->getCustomCssClass(0);
 	}
 
 	/**
@@ -188,7 +191,18 @@ class TabsCardWidget extends \yii\base\Widget
 		$class = 'card-header';
 		$class .= (!empty($this->tabs)) ? ' d-flex p-0' : '';
 
-		return $class;
+		return $class . $this->getCustomCssClass(1);
+	}
+
+	/**
+	 * @return string
+	 */
+	protected function getCardTitleClass(): string
+	{
+		$class = 'card-title';
+		$class .= (!empty($this->tabs)) ? ' p-3' : '';
+
+		return $class . $this->getCustomCssClass(2);
 	}
 
 	/**
@@ -196,7 +210,7 @@ class TabsCardWidget extends \yii\base\Widget
 	 */
 	protected function getCardBodyClass(): string
 	{
-		return 'card-body';
+		return 'card-body' . $this->getCustomCssClass(3);
 	}
 
 	/**
@@ -204,6 +218,6 @@ class TabsCardWidget extends \yii\base\Widget
 	 */
 	protected function getCardFooterClass(): string
 	{
-		return 'card-footer';
+		return 'card-footer' . $this->getCustomCssClass(4);
 	}
 }
