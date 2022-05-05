@@ -19,12 +19,6 @@ class CardWidget extends \yii\base\Widget
 	public string $title;
 
 	/**
-	 * color of a card header (Bootstrap 4 colors. 'success', 'danger' еtс.)
-	 * @var string
-	 */
-	public string $color = '';
-
-	/**
 	 * makes an outlined card
 	 * @var bool
 	 */
@@ -44,7 +38,7 @@ class CardWidget extends \yii\base\Widget
 
 	/**
 	 * content of card footer
-	 * @var array|string
+	 * @var string|array
 	 */
 	public $footer = '';
 
@@ -62,19 +56,6 @@ class CardWidget extends \yii\base\Widget
 	public string $ajaxOverlay = 'overlay';
 
 	/**
-	 * additional CSS classes
-	 * format: [
-	 *  0 => 'classes-for-card-wrapper',
-	 *  1 => 'classes-for-card-header',
-	 *  2 => 'classes-for-card-title',
-	 *  3 => 'classes-for-card-body',
-	 *  4 => 'classes-for-card-footer',
-	 * ]
-	 * @var array
-	 */
-	public array $cssClasses = [];
-
-	/**
 	 * content of a card
 	 * @var string
 	 */
@@ -82,6 +63,8 @@ class CardWidget extends \yii\base\Widget
 
 	use CardToolsSupportTrait;
 	use ShadowSupportTrait;
+	use CustomCssSupportTrait;
+	use ColorSupportTrait;
 
 	/**
 	 * @return void
@@ -102,6 +85,7 @@ class CardWidget extends \yii\base\Widget
 	{
 		$this->content = ob_get_clean();
 		$this->registerJs();
+
 		$html = Html::beginTag('div', ['class' => $this->getCardClass(), 'data-widget' => 'card-widget']);
 
 		$html .= $this->getCardHeader();
@@ -160,7 +144,7 @@ class CardWidget extends \yii\base\Widget
 			}
 			$html = Html::tag('div', $footer, ['class' => 'text-right']);
 		} else {
-			$html = $this->footer;
+			$html = $this->footer; //Html::encode($this->footer)?
 		}
 
 		return Html::tag('div', $html, ['class' => $this->getCardFooterClass()]);
@@ -169,19 +153,20 @@ class CardWidget extends \yii\base\Widget
 	/**
 	 * @return string
 	 */
-	protected function getCardClass(): string
+	protected function getCardClass(string $baseClass = 'card'): string
 	{
-		$class = 'card';
+		$class = $baseClass;
 
-		$class .= ($this->color && !$this->background && !$this->gradient) ? " card-{$this->color}" : '';
-		$class .= ($this->outline && $this->color) ? ' card-outline' : '';
-		$class .= ($this->background && $this->color) ? " bg-{$this->color}" : '';
-		$class .= ($this->gradient && $this->color) ? " bg-gradient-{$this->color}" : '';
+		if ($this->isColor($this->color)) {
+			$class .= (!$this->background && !$this->gradient) ? " card-{$this->color}" : '';
+			$class .= ($this->outline) ? ' card-outline' : '';
+			$class .= ($this->background) ? " bg-{$this->color}" : '';
+			$class .= ($this->gradient) ? " bg-gradient-{$this->color}" : '';
+		}
 		$class .= $this->getShadowClass();
 		$class .= ($this->hide) ? ' collapsed-card' : '';
-		$class .= (isset($this->cssClasses[0]) && !empty($this->cssClasses[0])) ? " {$this->cssClasses[0]}" : '';
 
-		return $class;
+		return $class . $this->getCustomCssClass(0);
 	}
 
 	/**
@@ -189,10 +174,7 @@ class CardWidget extends \yii\base\Widget
 	 */
 	protected function getCardHeaderClass(): string
 	{
-		$class = 'card-header';
-		$class .= (isset($this->cssClasses[1]) && !empty($this->cssClasses[1])) ? " {$this->cssClasses[1]}" : '';
-
-		return $class;
+		return 'card-header' . $this->getCustomCssClass(1);
 	}
 
 	/**
@@ -200,10 +182,7 @@ class CardWidget extends \yii\base\Widget
 	 */
 	protected function getCardTitleClass(): string
 	{
-		$class = 'card-title';
-		$class .= (isset($this->cssClasses[2]) && !empty($this->cssClasses[2])) ? " {$this->cssClasses[2]}" : '';
-
-		return $class;
+		return 'card-title' . $this->getCustomCssClass(2);
 	}
 
 	/**
@@ -211,10 +190,7 @@ class CardWidget extends \yii\base\Widget
 	 */
 	protected function getCardBodyClass(): string
 	{
-		$class = 'card-body';
-		$class .= (isset($this->cssClasses[3]) && !empty($this->cssClasses[3])) ? " {$this->cssClasses[3]}" : '';
-
-		return $class;
+		return 'card-body' . $this->getCustomCssClass(3);
 	}
 
 	/**
@@ -222,10 +198,7 @@ class CardWidget extends \yii\base\Widget
 	 */
 	protected function getCardFooterClass(): string
 	{
-		$class = 'card-footer';
-		$class .= (isset($this->cssClasses[4]) && !empty($this->cssClasses[4])) ? " {$this->cssClasses[4]}" : '';
-
-		return $class;
+		return 'card-footer' . $this->getCustomCssClass(4);
 	}
 
 	/**
@@ -251,7 +224,7 @@ class CardWidget extends \yii\base\Widget
 						$(el).remove();
 					});
         });
-      ", View::POS_READY, 'ajaxLoad');
+			", View::POS_READY, 'ajaxLoad');
 		}
 	}
 }
