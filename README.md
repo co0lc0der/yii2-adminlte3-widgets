@@ -67,7 +67,7 @@ Adds support a main color for a card and 2 methods for checking allowed value.
 
 ### Public properties, its types and default values
 
-- `string $color = ''` - color of a text in card header (Bootstrap 4 colors or additional [colors of AdminLTE](https://adminlte.io/docs/3.1//layout.html))
+- `string $color = ''` - a color of a card header (Bootstrap 4 colors or additional [colors of AdminLTE](https://adminlte.io/docs/3.1//layout.html))
 
 ## CustomCssSupportTrait
 
@@ -93,7 +93,7 @@ It helps to make buttons for a card header. See the example for CardWidget below
 
 ## CardWidget
 
-This is the basic class. It uses [CardToolsSupport](#cardtoolssupporttrait), [ShadowSupport](#shadowsupporttrait), [ColorSupportTrait](#colorsupporttrait) and [CustomCssSupportTrait](#customcsssupporttrait) traits.
+This is the basic class. It uses [CardToolsSupport](#cardtoolssupporttrait), [ShadowSupport](#shadowsupporttrait), [ColorSupport](#colorsupporttrait) and [CustomCssSupport](#customcsssupporttrait) traits.
 
 ### Public properties, its types and default values
 
@@ -255,7 +255,7 @@ Support since v0.5.2. Use `['---']` to put a divider into header dropdown menu. 
 
 ## TabsCardWidget
 
-Pay attention! You should use `echo` and `widget()` method when you work with the widget. It uses [ShadowSupport](#shadowsupporttrait), [ColorSupportTrait](#colorsupporttrait) and [CustomCssSupportTrait](#customcsssupporttrait) traits.
+Pay attention! You should use `echo` and `widget()` method when you work with the widget. It uses [ShadowSupport](#shadowsupporttrait), [ColorSupport](#colorsupporttrait) and [CustomCssSupport](#customcsssupporttrait) traits.
 
 ### Public properties, its types and default values
 
@@ -343,7 +343,7 @@ This class is extended of [CardWidget](#cardwidget) therefore it has the same pr
 
 ## ContactCardWidget
 
-Pay attention! You should use `echo` and `widget()` method when you work with the widget. It uses [CardToolsSupport](#cardtoolssupporttrait), [ShadowSupport](#shadowsupporttrait), [ColorSupportTrait](#colorsupporttrait) and [CustomCssSupportTrait](#customcsssupporttrait) traits.
+Pay attention! You should use `echo` and `widget()` method when you work with the widget. It uses [CardToolsSupport](#cardtoolssupporttrait), [ShadowSupport](#shadowsupporttrait), [ColorSupport](#colorsupporttrait) and [CustomCssSupport](#customcsssupporttrait) traits.
 
 ### Public properties, its types and default values
 
@@ -504,7 +504,7 @@ This class is extended of [CardWidget](#cardwidget) therefore it has the same pr
 
 ## SocialWidget
 
-Since v0.6. Pay attention! You should use `echo` and `widget()` method when you work with the widget. It uses [ShadowSupport](#shadowsupporttrait), [ColorSupportTrait](#colorsupporttrait) and [CustomCssSupportTrait](#customcsssupporttrait) traits.
+Since v0.6. Pay attention! You should use `echo` and `widget()` method when you work with the widget. It uses [ShadowSupport](#shadowsupporttrait), [ColorSupport](#colorsupporttrait) and [CustomCssSupport](#customcsssupporttrait) traits.
 
 ### Public properties, its types and default values
 
@@ -554,7 +554,7 @@ Since v0.6. Pay attention! You should use `echo` and `widget()` method when you 
 
 ## UserCardWidget
 
-Since v0.6. Pay attention! You should use `echo` and `widget()` method when you work with the widget. It uses [ShadowSupport](#shadowsupporttrait), [ColorSupportTrait](#colorsupporttrait) and [CustomCssSupportTrait](#customcsssupporttrait) traits.
+Since v0.6. Pay attention! You should use `echo` and `widget()` method when you work with the widget. It uses [ShadowSupport](#shadowsupporttrait), [ColorSupport](#colorsupporttrait) and [CustomCssSupport](#customcsssupporttrait) traits.
 
 ### Public properties, its types and default values
 
