@@ -10,7 +10,7 @@ use yii\bootstrap\Html;
 class ContactCardWidget extends \yii\base\Widget
 {
 	/**
-	 * user name
+	 * username
 	 * @var string
 	 */
 	public string $name = '';
@@ -54,12 +54,6 @@ class ContactCardWidget extends \yii\base\Widget
 	public array $info = [];
 
 	/**
-	 * color of a card header (Bootstrap 4 colors. 'success', 'danger' еtс.)
-	 * @var string
-	 */
-	public string $color = '';
-
-	/**
 	 * makes an outlined card
 	 * @var bool
 	 */
@@ -74,6 +68,8 @@ class ContactCardWidget extends \yii\base\Widget
 
 	use CardToolsSupportTrait;
 	use ShadowSupportTrait;
+	use ColorSupportTrait;
+	use CustomCssSupportTrait;
 
 	/**
 	 * @return void
@@ -155,7 +151,7 @@ class ContactCardWidget extends \yii\base\Widget
 			}
 			$html = Html::tag('div', $footer, ['class' => 'text-right']);
 		} else {
-			$html = $this->footer; //Html::encode($this->about)?
+			$html = $this->footer; //Html::encode($this->footer)?
 		}
 
 		return Html::tag('div', $html, ['class' => $this->getCardFooterClass()]);
@@ -220,12 +216,14 @@ class ContactCardWidget extends \yii\base\Widget
 	{
 		$class = 'card d-flex flex-fill';
 
-		$class .= ($this->color) ? " card-{$this->color}" : '';
-		$class .= ($this->outline && $this->color) ? ' card-outline' : '';
+		if ($this->isColor($this->color)) {
+			$class .= " card-{$this->color}";
+			$class .= ($this->outline) ? ' card-outline' : '';
+		}
 		$class .= $this->getShadowClass();
 		$class .= ($this->hide) ? ' collapsed-card' : '';
 
-		return $class;
+		return $class . $this->getCustomCssClass(0);
 	}
 
 	/**
@@ -233,7 +231,7 @@ class ContactCardWidget extends \yii\base\Widget
 	 */
 	protected function getCardHeaderClass(): string
 	{
-		return 'card-header text-muted border-bottom-0';
+		return 'card-header text-muted border-bottom-0' . $this->getCustomCssClass(1);
 	}
 
 	/**
@@ -241,7 +239,7 @@ class ContactCardWidget extends \yii\base\Widget
 	 */
 	protected function getCardBodyClass(): string
 	{
-		return 'card-body pt-0';
+		return 'card-body pt-0' . $this->getCustomCssClass(3);
 	}
 
 	/**
@@ -249,6 +247,6 @@ class ContactCardWidget extends \yii\base\Widget
 	 */
 	protected function getCardFooterClass(): string
 	{
-		return 'card-footer';
+		return 'card-footer' . $this->getCustomCssClass(4);
 	}
 }
