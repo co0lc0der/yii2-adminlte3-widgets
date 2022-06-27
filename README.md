@@ -26,7 +26,7 @@ At present time the extension includes
 	* [SocialWidget](docs/SocialWidget.md)
 	* [UserCardWidget](docs/UserCardWidget.md)
 
-Read [documentation](docs/index.md) for examples.
+Read [documentation](https://github.com/co0lc0der/yii2-adminlte3-widgets/blob/main/docs/index.md) for examples.
 
 ## Installation
 
