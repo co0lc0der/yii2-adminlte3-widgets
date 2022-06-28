@@ -35,7 +35,7 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```sh
-composer require --prefer-dist co0lc0der/yii2-adminlte3-widgets "*"
+composer require co0lc0der/yii2-adminlte3-widgets
 ```
 
 or add
