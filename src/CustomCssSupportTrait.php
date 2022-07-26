@@ -24,7 +24,7 @@ trait CustomCssSupportTrait
 	/**
 	 * @return string
 	 */
-	protected function getCustonCssClass(int $index): string
+	protected function getCustomCssClass(int $index): string
 	{
 		return (isset($this->cssClasses[$index]) && !empty($this->cssClasses[$index])) ? " {$this->cssClasses[$index]}" : '';
 	}
