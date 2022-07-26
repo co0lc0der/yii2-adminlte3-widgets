@@ -3,10 +3,6 @@
 namespace co0lc0der\Lte3Widgets;
 
 use yii\bootstrap\Html;
-use co0lc0der\Lte3Widget\CardToolsSupportTrait;
-use co0lc0der\Lte3Widget\ShadowSupportTrait;
-use co0lc0der\Lte3Widget\ColorSupportTrait;
-use co0lc0der\Lte3Widget\CustomCssSupportTrait;
 
 /**
  * Class ContactCardWidget
