@@ -1,7 +1,11 @@
 <?php
+
 namespace co0lc0der\Lte3Widgets;
 
 use yii\bootstrap\Html;
+use co0lc0der\Lte3Widget\ShadowSupportTrait;
+use co0lc0der\Lte3Widget\CustomCssSupportTrait;
+use co0lc0der\Lte3Widget\ColorSupportTrait;
 
 /**
  * Class TabsCardWidget
@@ -9,6 +13,10 @@ use yii\bootstrap\Html;
  */
 class TabsCardWidget extends \yii\base\Widget
 {
+	use ShadowSupportTrait;
+	use CustomCssSupportTrait;
+	use ColorSupportTrait;
+
 	/**
 	 * title of a card
 	 * if title is empty tabs will be placed on the left side of the card header
@@ -60,10 +68,6 @@ class TabsCardWidget extends \yii\base\Widget
 	 * @var array
 	 */
 	public array $tabs = [];
-
-	use ShadowSupportTrait;
-	use CustomCssSupportTrait;
-	use ColorSupportTrait;
 
 	/**
 	 * @return void

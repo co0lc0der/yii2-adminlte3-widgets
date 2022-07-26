@@ -1,7 +1,11 @@
 <?php
+
 namespace co0lc0der\Lte3Widgets;
 
 use yii\bootstrap\Html;
+use co0lc0der\Lte3Widget\CustomCssSupportTrait;
+use co0lc0der\Lte3Widget\ColorSupportTrait;
+use co0lc0der\Lte3Widget\ShadowSupportTrait;
 
 /**
  * Class UserCardWidget
@@ -9,6 +13,10 @@ use yii\bootstrap\Html;
  */
 class UserCardWidget extends \yii\base\Widget
 {
+	use CustomCssSupportTrait;
+	use ColorSupportTrait;
+	use ShadowSupportTrait;
+
 	const TEXT_ALIGN = ['left', 'right', 'center'];
 
 	/**
@@ -64,10 +72,6 @@ class UserCardWidget extends \yii\base\Widget
 	 * @var array
 	 */
 	public array $cols = [];
-
-	use CustomCssSupportTrait;
-	use ColorSupportTrait;
-	use ShadowSupportTrait;
 
 	/**
 	 * @return void

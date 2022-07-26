@@ -1,7 +1,11 @@
 <?php
+
 namespace co0lc0der\Lte3Widgets;
 
 use yii\bootstrap\Html;
+use co0lc0der\Lte3Widget\CustomCssSupportTrait;
+use co0lc0der\Lte3Widget\ColorSupportTrait;
+use co0lc0der\Lte3Widget\ShadowSupportTrait;
 
 /**
  * Class SocialWidget
@@ -9,6 +13,10 @@ use yii\bootstrap\Html;
  */
 class SocialWidget extends \yii\base\Widget
 {
+	use CustomCssSupportTrait;
+	use ColorSupportTrait;
+	use ShadowSupportTrait;
+
 	/**
 	 * username
 	 * @var string
@@ -49,10 +57,6 @@ class SocialWidget extends \yii\base\Widget
 	 * @var array
 	 */
 	public array $rows = [];
-
-	use CustomCssSupportTrait;
-	use ColorSupportTrait;
-	use ShadowSupportTrait;
 
 	/**
 	 * @return void

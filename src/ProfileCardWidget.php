@@ -1,4 +1,5 @@
 <?php
+
 namespace co0lc0der\Lte3Widgets;
 
 use yii\bootstrap\Html;
