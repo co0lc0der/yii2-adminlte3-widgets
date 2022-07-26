@@ -3,9 +3,6 @@
 namespace co0lc0der\Lte3Widgets;
 
 use yii\bootstrap\Html;
-use co0lc0der\Lte3Widget\ShadowSupportTrait;
-use co0lc0der\Lte3Widget\CustomCssSupportTrait;
-use co0lc0der\Lte3Widget\ColorSupportTrait;
 
 /**
  * Class TabsCardWidget
