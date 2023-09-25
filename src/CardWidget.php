@@ -22,7 +22,7 @@ class CardWidget extends \yii\base\Widget
 	 * id of a card
 	 * @var string
 	 */
-	public string $id = '';
+	public string $id;
 	
 	/**
 	 * title of a card
@@ -93,7 +93,11 @@ class CardWidget extends \yii\base\Widget
 		$this->content = ob_get_clean();
 		$this->registerJs();
 
-		$html = Html::beginTag('div', ['id' =>$this->id, 'class' => $this->getCardClass(), 'data-widget' => 'card-widget']);
+		$html = Html::beginTag('div', [
+			'id' => empty($this->id) ? null : $this->id,
+			'class' => $this->getCardClass(),
+			'data-widget' => 'card-widget'
+		]);
 
 		$html .= $this->getCardHeader();
 		$html .= $this->getCardBody();
