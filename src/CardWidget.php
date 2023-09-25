@@ -17,7 +17,13 @@ class CardWidget extends \yii\base\Widget
 	use ColorSupportTrait;
 
 	const OVERLAY_TYPES = ['overlay', 'dark'];
-
+	
+	/**
+	 * id of a card
+	 * @var string
+	 */
+	public string $id = '';
+	
 	/**
 	 * title of a card
 	 * @var string
@@ -87,7 +93,7 @@ class CardWidget extends \yii\base\Widget
 		$this->content = ob_get_clean();
 		$this->registerJs();
 
-		$html = Html::beginTag('div', ['class' => $this->getCardClass(), 'data-widget' => 'card-widget']);
+		$html = Html::beginTag('div', ['id' =>$this->id, 'class' => $this->getCardClass(), 'data-widget' => 'card-widget']);
 
 		$html .= $this->getCardHeader();
 		$html .= $this->getCardBody();
@@ -228,4 +234,5 @@ class CardWidget extends \yii\base\Widget
 			", View::POS_READY, 'ajaxLoad');
 		}
 	}
+
 }
