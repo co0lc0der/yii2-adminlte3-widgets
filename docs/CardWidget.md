@@ -4,6 +4,7 @@ This is the basic class. It uses [CardToolsSupport](CardToolsSupportTrait.md), [
 
 ## Public properties, its types and default values
 
+- `string $id = ''` - id of a card
 - `string $title = ''` - title of a card
 - `bool $outline = false` - makes an outlined card
 - `bool $background = false` - makes a colored card, uses $color property ([Bootstrap 4 colors](https://getbootstrap.com/docs/4.6/utilities/colors/) or additional [colors of AdminLTE](https://adminlte.io/docs/3.1//layout.html))
@@ -16,6 +17,7 @@ This is the basic class. It uses [CardToolsSupport](CardToolsSupportTrait.md), [
 
 ```php
 <?php CardWidget::begin([
+    'id' => 'some-id',          // id of a card
 	'title' => 'Some title',    // title of a card
 	'color' => 'dark',          // bootstrap color name 'success', 'danger' еtс.
 	'gradient' => true,         // use gradient background
