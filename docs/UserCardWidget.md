@@ -35,7 +35,7 @@ Since [v0.6](https://github.com/co0lc0der/yii2-adminlte3-widgets/releases/tag/v0
 
 ### Rendered UserCard with background color
 
-![Rendered UserCard with background color](https://code-notes.ru/usercard_example1.png "Rendered UserCard with background color")
+![Rendered UserCard with background color](https://pics.code-notes.ru/usercard_example1.png "Rendered UserCard with background color")
 
 ## Example 2
 
@@ -58,6 +58,6 @@ Since [v0.6](https://github.com/co0lc0der/yii2-adminlte3-widgets/releases/tag/v0
 
 ### Rendered UserCard with background image
 
-![Rendered UserCard with background image](https://code-notes.ru/usercard_example2.png "Rendered UserCard with background image")
+![Rendered UserCard with background image](https://pics.code-notes.ru/usercard_example2.png "Rendered UserCard with background image")
 
 Back to [doc index](index.md) or [readme](../README.md)

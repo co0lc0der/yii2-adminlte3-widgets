@@ -39,10 +39,10 @@ Since [v0.2](https://github.com/co0lc0der/yii2-adminlte3-widgets/releases/tag/v0
 
 ### Rendered TabsCard
 
-![Rendered TabsCard](https://code-notes.ru/tabscard_example.png "Rendered TabsCard")
+![Rendered TabsCard](https://pics.code-notes.ru/tabscard_example.png "Rendered TabsCard")
 
 ### Rendered TabsCard without title
 
-![Rendered TabsCard without title](https://code-notes.ru/tabscard_example2.png "Rendered TabsCard without title")
+![Rendered TabsCard without title](https://pics.code-notes.ru/tabscard_example2.png "Rendered TabsCard without title")
 
 Back to [doc index](index.md) or [readme](../README.md)

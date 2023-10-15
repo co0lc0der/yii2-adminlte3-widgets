@@ -48,6 +48,6 @@ Since [v0.6](https://github.com/co0lc0der/yii2-adminlte3-widgets/releases/tag/v0
 
 ### Rendered SocialWidget
 
-![Rendered SocialWidget](https://code-notes.ru/social_example.png "Rendered SocialWidget")
+![Rendered SocialWidget](https://pics.code-notes.ru/social_example.png "Rendered SocialWidget")
 
 Back to [doc index](index.md) or [readme](../README.md)

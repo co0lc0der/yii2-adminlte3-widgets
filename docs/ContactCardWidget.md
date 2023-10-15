@@ -52,6 +52,6 @@ Since [v0.4](https://github.com/co0lc0der/yii2-adminlte3-widgets/releases/tag/v0
 
 ### Rendered ContactCard
 
-![Rendered ContactCard](https://code-notes.ru/contactcard_example.png "Rendered ContactCard")
+![Rendered ContactCard](https://pics.code-notes.ru/contactcard_example.png "Rendered ContactCard")
 
 Back to [doc index](index.md) or [readme](../README.md)

@@ -103,10 +103,10 @@ This class is extended of [CardWidget](CardWidget.md) therefore it has the same 
 
 ### Rendered DirectChat
 
-![Rendered DirectChat](https://code-notes.ru/directchat_example1.png "Rendered DirectChat")
+![Rendered DirectChat](https://pics.code-notes.ru/directchat_example1.png "Rendered DirectChat")
 
 ### Rendered DirectChat (Contact list)
 
-![Rendered DirectChat (Contact list)](https://code-notes.ru/directchat_example2.png "Rendered DirectChat (Contact list)")
+![Rendered DirectChat (Contact list)](https://pics.code-notes.ru/directchat_example2.png "Rendered DirectChat (Contact list)")
 
 Back to [doc index](index.md) or [readme](../README.md)

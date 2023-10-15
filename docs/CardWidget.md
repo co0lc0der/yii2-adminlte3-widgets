@@ -62,7 +62,7 @@ This is the basic class. It uses [CardToolsSupport](CardToolsSupportTrait.md), [
 
 ### Rendered card
 
-![Rendered card](https://code-notes.ru/card_example.png "Rendered card")
+![Rendered card](https://pics.code-notes.ru/card_example.png "Rendered card")
 
 ## Example 2
 
@@ -102,7 +102,7 @@ This is the basic class. It uses [CardToolsSupport](CardToolsSupportTrait.md), [
 
 ### Rendered card
 
-![Rendered card](https://code-notes.ru/card_example2.png "Rendered card")
+![Rendered card](https://pics.code-notes.ru/card_example2.png "Rendered card")
 
 ## Header dropdown button and footer button example
 
@@ -158,6 +158,6 @@ Support since v0.5.2. Use `['---']` to put a divider into header dropdown menu. 
 
 ### Rendered card
 
-![Rendered card](https://code-notes.ru/dropdown_example.png "Rendered card")
+![Rendered card](https://pics.code-notes.ru/dropdown_example.png "Rendered card")
 
 Back to [doc index](index.md) or [readme](../README.md)
