@@ -2,7 +2,7 @@
 
 namespace co0lc0der\Lte3Widgets;
 
-use yii\bootstrap\Html;
+use yii\bootstrap4\Html;
 
 /**
  * Class SocialWidget
