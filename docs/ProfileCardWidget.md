@@ -41,6 +41,10 @@ This class is extended of [CardWidget](CardWidget.md) therefore it has the same 
 
 ### Rendered ProfileCard
 
+<<<<<<< HEAD
+![Rendered ProfileCard](http://pics.code-notes.pro/profilecard_example.png "Rendered ProfileCard")
+=======
 ![Rendered ProfileCard](https://pics.code-notes.ru/profilecard_example.png "Rendered ProfileCard")
+>>>>>>> d2642029e0e442efd17ceeda396c514dc4855cdb
 
 Back to [doc index](index.md) or [readme](../README.md)

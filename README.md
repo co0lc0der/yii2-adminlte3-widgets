@@ -3,6 +3,7 @@
 [![Latest Version](https://img.shields.io/github/release/co0lc0der/yii2-adminlte3-widgets?style=flat-square)](https://github.com/co0lc0der/yii2-adminlte3-widgets/release)
 ![GitHub repo size](https://img.shields.io/github/repo-size/co0lc0der/yii2-adminlte3-widgets?color=orange&label=size&style=flat-square)
 [![Packagist Downloads](https://img.shields.io/packagist/dt/co0lc0der/yii2-adminlte3-widgets?color=yellow&style=flat-square)](https://packagist.org/packages/co0lc0der/yii2-adminlte3-widgets)
+[![GitHub forks](https://img.shields.io/github/forks/co0lc0der/yii2-adminlte3-widgets?style=flat-square)](https://github.com/co0lc0der/yii2-adminlte3-widgets/network)
 [![GitHub license](https://img.shields.io/github/license/co0lc0der/yii2-adminlte3-widgets?style=flat-square)](https://github.com/co0lc0der/yii2-adminlte3-widgets/blob/main/LICENSE.md)
 ![Packagist PHP Version Support](https://img.shields.io/packagist/php-v/co0lc0der/yii2-adminlte3-widgets?color=8993be&style=flat-square)
 
