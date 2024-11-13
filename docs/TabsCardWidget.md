@@ -39,18 +39,10 @@ Since [v0.2](https://github.com/co0lc0der/yii2-adminlte3-widgets/releases/tag/v0
 
 ### Rendered TabsCard
 
-<<<<<<< HEAD
 ![Rendered TabsCard](http://pics.code-notes.pro/tabscard_example.png "Rendered TabsCard")
 
 ### Rendered TabsCard without title
 
 ![Rendered TabsCard without title](http://pics.code-notes.pro/tabscard_example2.png "Rendered TabsCard without title")
-=======
-![Rendered TabsCard](https://pics.code-notes.ru/tabscard_example.png "Rendered TabsCard")
-
-### Rendered TabsCard without title
-
-![Rendered TabsCard without title](https://pics.code-notes.ru/tabscard_example2.png "Rendered TabsCard without title")
->>>>>>> d2642029e0e442efd17ceeda396c514dc4855cdb
 
 Back to [doc index](index.md) or [readme](../README.md)
